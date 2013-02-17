@@ -1,0 +1,902 @@
+/*
+Theme Name: TwentyEleven Child
+Description: Greene Hill Food Co-op child theme
+Author: Samuael Topiary
+Version: 1.0
+Template: twentyeleven
+*/
+
+
+@import url('../twentyeleven/style.css');
+
+.entry-content img, .comment-content img, .widget img {
+max-width: 100%;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	clear: none;
+                  }
+h1, h2, h3, h4 .entry-title a, .entry-title h1,
+.singular .entry-title, .singular .entry-header, 
+.entry-title,
+.entry-title a {
+	//margin-top: 20px;
+	//margin-bottom: 10px;
+	color: #006633;
+	font-family: Impact, sans-serif;
+	letter-spacing: 0.02em;
+	font-weight: normal;
+	//text-transform: uppercase;
+	padding: 0px;
+}
+
+ul {
+    list-style: disc inside none;
+}
+pre {	background: transparent;
+	font-weight: normal;
+	font-family: Arial, sans-serif !IMPORTANT;
+	font-size: 10px !IMPORTANT;
+}
+
+/* Link hover style
+-------------------------------------------------------------- */
+
+a {	text-decoration: none;
+	color: #006633;
+	font-weight: bold;
+}
+a:hover {	
+	text-decoration: none;
+	color: #cc0000;
+	font-weight: bold;
+}
+
+/* =Layout
+-------------------------------------------------------------- */
+
+body {  background: url('images/Kraft_Paper.jpg') repeat; 
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.4em; 
+	line-height: 1.4em;
+	/color:#222; 
+	font-size: 14px;
+	line-height: 1.5em;
+	color: black;
+	width: 90%;
+	min-width: 1000px;
+	margin: 0 auto;
+}
+p {
+	margin-bottom: 1.2em;
+}
+
+#page, #header, 
+#main, #footer {
+	background: transparent;
+}
+
+#page { 
+	/width: 100%;
+	margin-top: 1em;
+}	
+
+/* =Header
+-------------------------------------------------------------- */
+#branding {
+    	border-top: 0px;
+	padding-bottom: 0px;
+}
+#head {
+	//display: block;
+	//position: relative;
+	margin: 0 auto;
+	height: 145px;
+	left: 25px;
+	//background: grey;
+}
+#head .h1 {
+	display: none;
+}
+#logo {
+    	background: url('images/greenhill-logo.png') no-repeat;
+	position: absolute;
+	float: left;
+	height: 136px;
+    	width: 196px;
+	padding-top: 0px;
+    	margin-left: 0px;
+	display: block;
+}
+#logo a {
+    	display: block;
+	height: 136px;
+    	width: 196px;
+}
+#Searchbar {
+	position: absolute;
+	float: left;
+	height: 54px;
+	width: 299px;
+	top: 40px;
+	left: 520px;
+	//background:url('images/search field.png') no-repeat;
+}
+#Search-title {
+	position: absolute;
+	float: left;
+	/left: 480px;
+	top: 20px;
+	width: 100px;
+	color: #026945;
+	font-family: Impact, sans-serif;
+	font-style: bold;
+	font-size: 24px;
+}
+input, textarea {
+    	color: #666;
+	font: 500 12px/1.5 "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+#branding .only-search #searchform {
+	top: 18px;
+    	z-index: 1;
+}
+#branding .only-search #s:focus {
+    	background-color: white;
+}
+	
+#branding #searchform {
+	position: absolute;
+	left: 100px;
+}
+#branding .only-search #s {
+    	border-color: #222 solid;
+    	color: green;
+	//background:url('images/search field background.gif') no-repeat;
+	font-size: 14px;
+	font-weight: bold;
+	//text-indent: 10px;
+	//vertical-align: top;
+	//font-family: 'Droid Sans', Lucida Grande, Arial, sans-serif;
+	border: 0px solid #00cc2f;
+	top: 30px;
+}
+#branding #s {
+	width: 65px;
+}
+#branding #s:focus {
+	background-color: white;
+	width: 150px;
+}
+#branding .only-search #s {
+	background-color: white;
+	border-color: #000;
+	color: black;
+}
+
+#topnav {
+	position: absolute;
+	display:block;
+	width: 140px;
+	height: 140px;
+	top: 0px;
+	left: 850px;
+	list-style: none;
+	margin: 0px;
+}
+#Contact {
+	position: relative;
+	background: url('images/ContactUs.png') no-repeat;
+	width: 124px;
+  	height: 45px;	
+}
+#Contact a{
+    	display: block;
+	width: 124px;
+  	height: 45px;	
+}
+#Member {
+	position: absolute;
+	background: url('images/MemberArea.png') no-repeat;
+	display: block;
+	width: 124px;
+  	height: 60px;
+}
+#Member a {
+	display: block;
+	width: 124px;
+  	height: 60px;
+}
+/* =main side Nav Menu
+-------------------------------------------------------------- */
+#main {
+	padding: 10px 0 0;
+}
+#sidenav {
+	top: 140px;
+	width: 170px;
+	height: 460px;
+	overflow: visible;
+	float: left;
+}
+#menu {
+	position: relative;
+	display: block;
+	float: left;
+	list-style: none;
+  	padding: 0;
+  	margin: 0;
+  	height: 370px;
+	width: 200px;
+	left: -20px;
+}
+#menu .About {
+  	position: relative;
+	float: left;
+	background: url('images/AboutUs.png') no-repeat;
+  	width: 152px;
+  	height: 60px;
+	left: 30px;
+}
+#menu .About a {
+  	postion: absolute;
+  	width: 152px;
+  	height: 60px;
+}
+#menu .Join {
+  	position: absolute;
+	float: left;
+	background: url('images/JoinUs.png') no-repeat;
+  	width: 113px;
+  	height: 105px;
+	left: 30px;
+	top: 60px;
+}
+#menu .Join a {
+  	width: 113px;
+  	height: 105px;
+}
+#menu .Food {
+  	position: absolute;
+	float: right;
+ 	background: url('images/Food.png') no-repeat;
+  	width: 101px;
+  	height: 60px;
+  	top: 156px;
+  	left: 77px;
+}
+#menu .Food a {
+ 	width: 101px;
+  	height: 60px;
+}
+#menu .News {
+  	position: absolute;
+	float: left;
+	background: url('images/news.png') no-repeat;
+  	width: 102px;
+  	height: 56px;
+  	top: 207px;
+  	left: 29px;
+}
+#menu .News {
+	width: 102px;
+  	height: 56px;
+}  	
+#menu .FAQs {
+	position: absolute;
+	float: left;
+	background: url('images/FAQs.png') no-repeat;
+  	width: 59px;
+  	height: 55px;
+  	top: 258px;
+  	left: 30px;
+}
+#Counter {
+  	position: absolute;
+	float: left;
+	//display: block;
+  	//background: url('images/counter2.png') no-repeat;
+  	width: 153px;
+  	height:18px;
+  	//left: 80px;
+  	top: 560px;
+  	//padding-bottom: 20px;
+  	clear: both;
+}
+
+
+/* =CONTENT section
+-------------------------------------------------------------- */
+
+#primary {
+	//position: relative;
+	float: left;
+	width: 800px;
+	//margin: 0 20px 0 200px;
+	//top: -30px;
+	padding-left: 30px;
+	margin-top: -10px;
+}
+#content {
+	margin: 0px;
+	/padding-left: 30px;
+	width: 600px;
+}
+
+.page-title {
+	font-size: 24px;
+	font-weight: normal;
+	font-family: Impact, sans-serif;
+	letter-spacing: 0.02em;
+	line-height: 1.4em;
+	margin: 0px;
+	color: #006633;
+	//text-transform: uppercase;
+	padding-bottom: 0px;
+}
+.category-archive-meta {
+	font-style: italic;
+	font-size: 12px;
+	color: #444;
+	padding-top: 0px;
+	margin: 1px;
+}
+#content .center,
+.singular #content .center {
+	margin: 0px auto;
+	width: 600px;
+}
+.entry-header h1 {
+	margin: 0px 0px 0px 0px;
+	font-size: 24px;
+	color: #006633;
+	padding: 0 0 0px 0;;
+	//text-transform: uppercase;
+	font-weight: normal;
+	letter-spacing: 0.01em;
+}
+.entry-header h2,
+.entry-content h1, 
+.entry-content h2 {
+	font-family: Impact, sans-serif;
+	letter-spacing: 0.02em;
+	font-weight: normal;
+	font-size: 21px;
+	color: #006633;
+	padding: 0 0 10px 0;
+	margin: 0px;
+	text-transform: none;
+}
+.entry-content h3,
+.entry-content h4, 
+.comment-content h3  {
+	font-family: Impact, sans-serif;
+	letter-spacing: 0.02em;
+	font-weight: normal;
+	color: #006633;
+	padding: 0 0 0px 0;
+	margin: 0px;
+	font-size: 18px;
+	//margin-bottom: 10px;
+	line-height: 1.5em;
+	text-transform: none;
+}
+.entry-title a:hover,
+.entry-header h1 a:hover,
+.entry-header h2 a:hover,
+.entry-content h1 a:hover {
+	font-weight: normal;
+	color: #cc0000;
+}
+
+.entry-content {
+	font-size: 12px;
+	line-height: 1.25em;
+	letter-spacing: 0.01em;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.entry-content a {
+	font-weight: bold;
+}
+.entry-content ul {
+	//margin-left: 4px;
+    	list-style: disc outside none;
+	margin-bottom: 20px;
+}
+.entry-content li {
+	padding-left: 4px;
+}
+.entry-meta .edit-link a {
+	background: transparent;
+	border: none;
+	color: #666;
+	font-size: 12px;
+	line-height: 1.5em;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+.entry-meta .edit-link a:hover {
+	background: transparent;
+	text-decoration: none;
+	color: #555;
+	font-weight: bold;
+}
+
+.hentry,
+.no-results {
+	border-bottom: 1px dotted #444;
+}
+#nav-single .nav-previous, 
+#nav-single .nav-next {
+    	display: none;
+}
+tbody, tfoot, thead, tr, th, td,
+.comment-content table,
+.entry-content td,
+.comment-content td {
+	border-bottom: 0px;
+	border-top: 1px solid #666;
+	margin: 0px;
+	width: 600px;
+	background-color: transparent;
+	padding: 6px 10px 6px 0;
+}
+table, .entry-content table {
+	border-bottom: 0px;
+	border-top: 0px solid #666;
+}
+.entry-content th,
+.comment-content th {
+	color: #666;
+	font-size: 10px;
+	font-weight: 500;
+	letter-spacing: 0.1em;
+	line-height: 2.6em;
+	text-transform: uppercase;
+}
+
+
+/*
+LAYOUT: Full width, no sidebar
+DESCRIPTION: Full width content with no sidebar; used for attachment pages
+*/
+
+/.single-attachment #content {
+/	margin: 0 auto;
+/	width: 750px;
+/	overflow: hidden;
+/}
+
+/* Singular */
+
+
+
+#content .one-column {
+	margin: -30px 0 0 50px;
+	width: 750px;
+	overflow: hidden;
+	padding: 0px;
+}
+.singular #content .two-column {
+	margin: -30px 0 0 50px;
+	width: 720px;
+	overflow: hidden;
+	padding: 0px;
+}
+/}
+.singular #content {
+	/padding-left: 10px;
+	margin: 0px;
+ 	/margin: -30px 0 0 50px;
+ 	/position: relative;
+	/width: 750px;
+}
+.singular #content,
+.left-sidebar.singular #content {
+	clear: both;
+	margin: 0px;
+	width: auto;
+}
+#content .two-column, 
+.singular #content .two-column {
+	margin: 0 20px 0 5px;
+	width: 600px;
+	overflow: hidden;
+	padding: 0px;
+	float: left;
+}
+#content .two-column .entry-content , 
+#content .two-column .entry-header {
+	width: 580px;
+}
+.single h1.entry-title {
+	padding-top:0;
+}
+
+.singular .entry-header,
+.singular .entry-content,
+.singular footer.entry-meta,
+.singular #comments-title {
+	//margin: 0 auto;
+	width: 720px;
+}
+.singular .entry-content .two-column {
+	width: 550px;
+}
+.two-column .singular .entry-content, 
+.two-column .singular .entry-header {
+	width: 550px;
+}
+
+
+.singular .entry-meta .edit-link a {
+    	bottom: auto;
+    	float: right;
+    	position: relative;
+    	left: -10px;
+    	top: 0px;
+}
+
+#content .hentry, .no-results {
+    	margin: 0px;
+   	//padding-right: 30px;
+	padding-bottom: 0px;
+}
+.singular.page .hentry {
+   	padding: 0 0 0;
+}
+
+.entry-content, .entry-summary {
+    padding: 0px;
+}
+.entry-title {
+	margin: 0px;
+	line-height: 1.5em;
+}
+
+/* 404 page settings */
+
+.error404 #primary {
+    float: left;
+    margin: 0;
+}
+.error404 #primary #content {
+    //float: right;
+    margin: 0 20px 0 30px;
+    //position: relative;
+    width: 720px;
+}
+.entry-content #s {
+    width: 75%;
+}
+
+
+/* main right side sidebars area
+-------------------------------------------------------------- */
+#secondary {
+	position: relative;
+	margin-right: 0px;
+	width: 200px;
+	float: right;
+	left: 35px;
+	top: -20px;
+}
+
+#secondary .widget-title {
+	color: #006633;
+	font-size: 18px;
+	letter-spacing: 0.05em;
+	font-weight: normal;
+	line-height: 12px;
+}
+
+/* =sidebars
+-------------------------------------------------------------- */
+.widget-area {
+    	font-size: 14px;
+	
+}
+.widget {
+	margin-bottom: 1.2em;
+}
+.widget a {
+    	font-weight: bold;
+    	text-decoration: none;
+	
+}
+.widget a:hover, .widget a:focus, .widget a:active {
+    	text-decoration: none; 
+	color: #fe0000;
+}
+
+.post-title, .widget-title {
+    	font-size: 15px;
+	font-weight: normal;
+	line-height: 12px;
+	text-transform: none;
+	font-family: Impact, sans-serif;
+}
+.widget-title {
+ 	color: #006633;
+	letter-spacing: 0.02em;
+}
+#textwidget, .textwidget {
+	color: black;
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	list-style: none;
+	list-style-type: none;
+	margin: 3px 0;
+	padding: 3px 0;
+	border-bottom: 0px solid #666666;
+	line-height: 1.2em;
+}
+aside#secondary .textwidget a:hover {
+	color: #7A271E;
+	font-weight: normal;
+}
+.widget ul li, .ec3_events ul li,
+.advanced_recent_posts_widget ul li {
+    	list-style: none outside none;
+    	margin: 3px 0;
+    	padding: 3px 0;
+	display: block;
+	padding: 2px;
+	color: black;
+        line-height 12px !IMPORTANT;
+}
+.ec3_events .ec3_list ec3_list_day {
+	font-style: italic;
+	color: black;
+	padding-bottom: 0px;
+}
+.advanced_recent_posts_widget .post-title,
+.advanced_recent_posts_widget .post-title a {
+    	font-size: 15px;
+    	font-weight: bold;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #78271e;
+}
+.ec3_events .post-title,
+.ec3_events ul li,
+.ec3_events .post-title a {
+	font-size: 12px;	
+	margin-left: 0px;
+	padding-left: 0px;
+	font-weight: bold;
+	color: #78271e;
+}
+.advanced_recent_posts_widget .post-title a:hover, 
+.widget a:hover {
+    	color: #fff;
+	background-color: #00be45;
+	font-weight: bold;
+	padding: 2px;
+}
+.ec3_list li, .ec3_list li a {
+	font-size: 12px !IMPORTANT;
+	margin-left: 0px !IMPORTANT;
+	padding-left: 0px !IMPORTANT;
+	line-height: 12px !IMPORTANT;
+	font-weight: bold;
+	color: #78271e;	
+}
+.ec3_list ec3_list_day {
+	margin: 0px !IMPORTANT;
+	padding: 1px !IMPORTANT;
+}
+.ec3_events .post-title a:hover,
+.ec3_list li a:hover {
+	color: #fff;
+	background-color: #00be45;
+	font-weight: bold;
+	padding: 2px;
+}
+.ec3_events .widget ul ul,
+.advanced_recent_posts_widget ul li,
+.widget ul ul,
+.advanced_recent_posts_widget ul li {
+	margin-left: 0px !IMPORTANT;
+	border-bottom: 1px solid #666666 !IMPORTANT;
+}
+.post-date {
+	font-size: 12px;
+	font-style: italic;
+}
+#textwidget, .textwidget a:hover,
+#textwidget .widget widget_text a:hover {
+	border: 0px;
+	padding: 0px;
+	background-color: transparent;
+	margin: 0px;
+}
+
+
+
+/* =Footer
+-------------------------------------------------------------- */
+#colophon {
+	//width: 1100px;
+	//margin-left: 200px;
+	//margin-right: 100px;
+}
+#site-menu {
+	background: transparent;
+	color: #006633;
+	font-weight: normal;
+	font-size: 12px;
+	line-height: 1.25em;
+	list-style: none;
+}
+.navmenu {
+	list-style: none;
+	border-top: 0px solid #666;
+	text-align: center;
+}
+ul.navmenu {
+	margin: 0px;
+}
+#site-menu .navmenu li {
+	display: inline;
+	margin: 0 px;
+	list-style: none;
+	padding: 4px;
+}
+#site-menu .navmenu ul, .navmenu ol {
+	margin: 0px;
+}
+#site-menu a {
+	color: #006633;
+	font-weight: bold;
+}
+#site-menu a:hover {
+	color: #cc0000;
+	font-weight: bold;
+}
+#site-menu a:active {
+	color: #00be45;
+	font-weight: bold;
+}
+
+/* footer sidebars area */
+
+#supplementary {
+	margin: 0 auto 0 180px;
+	//text-align: left;
+	border-top: 0px solid #666 !IMPORTANT;
+}
+
+#supplementary.one {
+	//width: 800px;
+	//border-bottom: 1px solid #666;
+	padding: 0px !IMPORTANT;
+	overflow: hidden;
+	//margin: 20px auto 0 170px !IMPORTANT;
+	//position: absolute;
+}
+
+#first .widget-area {
+	margin-left: 235px;
+}
+
+
+#site-generator {
+	background: transparent;
+	border-top: 1px solid #666;
+	color: #006633;
+	font-weight: normal;
+	font-size: 12px;
+	line-height: 1.5em;
+	text-align: right;
+	padding: 15px;
+	margin-right: 50px;
+}
+#site-generator a {
+	color: #006633;
+	font-weight: normal;
+}
+#site-generator a:hover {
+	color: #fff;
+	background-color: #00be45;
+	font-weight: bold;
+}
+
+/* =Images
+-------------------------------------------------------------- */
+img, img.alignleft, img.alignright, img.aligncenter {
+    	border: 1px solid #666666;
+    	/padding: 10px 10px 50px 10px;
+    	/background: #f7f4e3;
+        max-width: 100%;
+    	margin: 5px;
+}
+.widget img {
+	border: 0px;
+	padding: 0px;
+	background: transparent;
+	margin: 5px;
+}
+.textwidget img a:hover {
+	background: transparent;
+}
+
+
+/* =Comments
+----------------------------------------------- */
+.nopassword,
+.nocomments {
+	display: none;
+}
+
+
+
+/* =Calendar css from Park Slope
+----------------------------------------------- */
+.entry-content table #smallCal {
+    margin: 10px 0;
+    text-align: center;
+}
+
+.entry-content table .calendarYear {
+    padding: 0;
+}
+.entry-content table .calendarYearHeader {
+    color: #D95819;
+    font-size: 40pt;
+    font-weight: bold;
+    line-height: 40pt;
+    text-align: center;
+}
+.entry-content table .calendar {
+    padding: 5px;
+}
+.entry-content table.calendarMonth {
+    border: 1px solid #669955;
+    width: 186px;
+}
+.entry-content table .calendarMonthHeader {
+    background-color: #669955;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 3px 3px 0;
+}
+.entry-content table .calendarHeader {
+    background-color: #669955;
+    color: white;
+    font-size: 8pt;
+    font-weight: bold;
+    padding: 0 3px 3px;
+}
+.entry-content table .acell, 
+.entry-content table .bcell, 
+.entry-content table .ccell, 
+.entry-content table .dcell, 
+.entry-content table .calendarCell {
+    background-color: #FFFFEE;
+    border-bottom: 1px solid #C3E0CC;
+    padding: 3px;
+}
+.entry-content table .Acell, 
+.entry-content table .Bcell, 
+.entry-content table .Ccell, 
+.entry-content table .Dcell {
+    background-color: green;
+    border-bottom: 1px solid #669955;
+    color: white;
+    font-size: 10pt;
+    font-weight: bold;
+    padding: 3px;
+}
+.entry-content table .calendarToday {
+    background-color: #D95819;
+    color: white;
+    padding: 3px;
+}
+
+/* color of table separation lines */
+.entry-content tbody,
+.comment-content tbody {
+	border-top: 1px solid #666;
+}

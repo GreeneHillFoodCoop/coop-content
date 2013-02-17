@@ -1,0 +1,552 @@
+/*
+Theme Name: Greene Hill Craft
+Theme URI: http://greenehillfood.coop
+Description: 
+Version: 0.1
+Author: Phil Ashlock
+Tags: coop, craft
+
+
+*/
+
+@charset "utf-8";
+* {padding:0; margin:0; border:none;}
+body {background:#FFF url(http://content.greenehillfood.coop/wp-content/uploads/2011/10/Kraft_Paper_1_by_SteveR55.jpg) repeat; color:#000; font-family: Helvetica, Arial, Geneva, Trebuchet, sans-serif; font-style: bold; }
+
+.content th, .content td {
+border-bottom: none;
+border-right: none;
+}
+
+.content h6 {
+line-height: 1;
+font-weight: normal;
+font-size: 1em;
+margin-bottom: .75em;
+margin-top: .5em;
+}
+
+.content h4 {
+line-height: 1;
+font-weight: normal;
+color : #026636;
+font-size: 2em;
+margin: 0 0 0.3em;
+font-family: Impact, Gill Sans, Arial Black, sans-serif;
+text-transform: uppercase;
+}
+
+h4 {
+font-weight : normal;
+}
+
+.content {
+font-size : 1.4em;
+}
+
+
+
+#main {
+width: 980px;
+margin: 0px auto;
+}
+#page {
+width: 980px;
+margin: 0px auto;
+}
+#page p, #page h2 {
+padding: 5px 35px;
+}
+
+#head {
+overflow: hidden;
+height: 156px;
+padding: 21px 0px 0px 18px;
+}
+#head #logo, #head h1, #head #nav, #head #forms {
+float: left;
+}
+
+
+
+body.about #head #nav {
+background : transparent url(./images/nav/about.png) no-repeat;
+}
+
+body.community #head #nav {
+background : transparent url(./images/nav/community.png) no-repeat;
+}
+
+body.food #head #nav {
+background : transparent url(./images/nav/food.png) no-repeat;
+}
+
+body.join-us #head #nav {
+background : transparent url(./images/nav/joinus.png) no-repeat;
+}
+
+body.news #head #nav {
+background : transparent url(./images/nav/news.png) no-repeat;
+}
+
+
+#head #nav {
+background : transparent url(./images/nav/master.png) no-repeat;
+width: 380px;
+height : 136px;
+margin: 7px 156px 0px 45px;
+}
+
+#head #nav {
+list-style-type : none;
+padding : 10px 0 0 3px;
+}
+
+#head #nav li a {
+margin : 0;
+padding : 0;
+text-indent : -9999em;
+overflow : hidden;
+float : left;
+width : 58px;
+height : 58px;
+}
+
+
+#head li#nav-about a {
+margin-left : 5px;
+}
+
+#head li#nav-community a {
+margin-top : 58px;
+}
+
+#head li#nav-food a {
+margin-left : 52px;
+margin-top : 58px;
+}
+
+#head li#nav-news a {
+margin-top : 58px;
+}
+
+
+
+#subnav,
+#subnav li {
+list-style-type : none;
+float : left;
+margin-left : 0;
+padding-left : 0;
+}
+
+#subnav {
+margin-left : -1em;
+}
+
+#subnav li a {
+margin-left : 1em;
+text-decoration : none;
+color : #026636;
+}
+
+#subnav li a:hover {
+color : #026636;
+}
+
+#head #forms {
+display: block;
+height: 156px;
+width: 180px;
+overflow: hidden;
+margin-top: 10px;
+}
+#head #forms input {
+border: 1px solid #4c4d4f;
+margin-bottom: 5px;
+}
+#head #forms input.button {border: 0px!important; position: relative;
+left: -2px;}
+#head #forms img {
+display: block;
+margin: 2px 0px 10px 2px;
+}
+#head input.shot {
+width: 133px;
+float: left;
+}
+#head input.long {
+width: 167px;
+}
+#head input.shot, #head input.long {
+height: 18px;
+}
+
+
+
+/* FOOTER */
+#foot {
+clear: both;
+padding : 2em 0 2em 0;
+font-size: .8em;
+text-align : center;
+font-weight: bold;
+color: #  026636;
+}
+#foot a {color: #026636; text-decoration: none; margin: 0px 4px 0px 0px;}
+#foot a:hover {padding: 2px; background-color : #6FBE44; color: white; text-decoration: none}
+#foot span {display: block}
+#foot span, #foot span a {
+color: #6FBE44;
+}
+
+/* CONTENT */
+#sidebarL, #center, #sidebarR {
+float: left;
+}
+
+#sidebarL {
+width: 5px;
+margin: 7px 7px 0px 15px;
+}
+#sidebarR {
+width: 190px;
+margin-top: 0px;
+margin-bottom:10px;
+}
+#center {
+width: 679px;
+overflow: hidden;
+margin: 10px 0px 10px 1px;
+padding-right: 50px;
+}
+
+
+#content h2 {
+margin-bottom: 10px;
+}
+
+
+#frontpage .hentry p {
+font-size : small;
+line-height : 1.25em;
+font-weight: normal;
+}
+
+body.page .posts .hentry h4 {
+color : #026636;
+font-size: 2em;
+margin: 0 0 0.3em;
+font-family: Impact, Gill Sans, Arial Black, sans-serif;
+text-transform: uppercase;
+}
+
+.posts .head h3 {
+font-size: 2.2em;
+margin: 0.44em 0 0.05em;
+font-family: Impact, Gill Sans, Arial Black, sans-serif;
+text-transform: uppercase;
+color : #026636;
+}
+
+.posts .head h4 a {
+color : #026636;
+text-decoration : none;
+}
+
+.posts .head h4 a:hover { background-color: #C0C0C0; padding: 1px;
+color: #8C991C;
+}
+
+.posts .source {
+margin-bottom : 1em;
+}
+
+.posts .source,
+.posts .source a {
+color : #026636;
+font-weight: bold;
+}
+
+body.about.page-parent .posts .head h4,
+body.food.page-parent .posts .head h4,
+body.join-us.page-parent .posts .head h4,
+body.community.page-parent .posts .head h4,
+body.committees.page-parent .posts .head h4 {
+display : none;
+}
+
+.posts .head img.avatar {
+display : none;
+}
+
+
+.posts .hentry {
+margin-bottom : 3em;
+}
+
+
+.hentry .comment-count,
+.hentry .entry-category,
+.hentry .continue-reading {
+display : inline-block;
+font-size : 1.05em;
+text-decoration : none;
+color : #026636;
+}
+
+
+.entry-footer {
+border-top : 1px dotted #ccc;
+padding-top : .5em;
+}
+
+.hentry .comment-count {
+margin-right : 2em;
+}
+
+.entry-footer a {
+text-decoration : none;
+color : #026636;
+}
+
+.entry-footer a:hover {
+text-decoration : underline;
+}
+
+.hentry .continue-reading {
+float : right;
+}
+
+
+
+
+
+
+
+
+#center p {
+margin-bottom: 20px;
+
+line-height : 1.2em;
+}
+
+#center p.ans {
+
+margin: 0;
+}
+
+#center table {
+position: relative;
+top: -20px;
+}
+#center table th {
+text-align: left;
+}
+
+#center .block {
+margin-bottom: 30px;
+}
+
+#center .block img {
+float: left;
+margin: 3px 10px 0 0;
+}
+#center .block h2 {
+margin-bottom: 5px;
+}
+#center .block p {
+
+margin-bottom: 5px;
+
+
+}
+#center #form {color: #4c4d4f; //margin-top: 20px;}
+#center #form #email {
+width: 462px;
+border: 1px solid #4c4d4f;
+
+height: 25px;
+margin-top: 3px;
+}
+#center #form #send {
+margin-top: 10px;
+float: right;
+}
+#center #form textarea {
+height: 200px!important;
+}
+
+
+
+.submenu {margin-bottom: 20px;}
+.submenu h2 {
+margin-bottom: 0px!important;
+padding: 0px;
+//margin-bottom: 5px!important; }
+.submenu a {
+display: block;
+
+font-weight: bold;
+text-decoration: none;
+text-transform: uppercase;
+}
+.submenu a:hover { text-decoration: underline;}
+#orange a {color:#6FBE44;}
+#loworange a {color:#6FBE44;}
+#darkred a {color: #6FBE44;}
+#red a {color: #6FBE44;}
+#blue a {color: #6FBE44;}
+
+
+
+.separator {
+display: block;
+position: relative;
+top: -3px;
+}
+.lvlheader {
+margin-top: 10px;
+}
+.lowheight {
+margin-top: 5px;
+margin-bottom: 7px!important;
+}
+
+
+.greenlink {font-weight: bold; color:#6fbe44;}
+.orangelink {font-weight: bold; color:#6FBE44;}
+.darkredlink {font-weight: bold; color: #6FBE44;}
+.redlink {font-weight: bold; color: #6FBE44;}
+
+#head h1,
+.sidebar h3 {
+font-size: 10em;
+margin: 10px 0px 15px 0px;
+text-transform: uppercase;
+padding-left: -1000px;
+}
+
+.sidebar a {
+color : #000;
+}
+
+.sidebar h3,
+{
+font-family: Impact, Gill Sans, Arial Black, sans-serif;
+}
+
+.sidebar h3 {
+font-size: 1.7em;
+}
+
+.sidebar h5 {
+font-size : 1.7em;
+font-weight : normal;
+font-family: Impact, Gill Sans, Arial Black, sans-serif;
+margin: 0em 0 0em;
+color : #026636;
+}
+
+#searchform label {
+font-family: Impact, Gill Sans, Arial Black, sans-serif;
+font-size : 1.6em;
+color : #026636;
+}
+
+#subpages-display ul,
+#subpages-display li {
+margin : 0;
+list-style-type : none;
+}
+
+#subpages-display li {
+margin-bottom : .3em;
+}
+
+#subpages-display ul li a {
+font-weight : bold;
+text-decoration : none;
+text-transform : uppercase;
+}
+
+#subpages-display ul li a:hover {
+text-decoration : none;
+}
+
+.posts a {
+color : #026636; text-decoration : none;
+}
+
+.posts a:hover {
+padding: 2px; background-color : #6FBE44; color: white; text-decoration : none;
+}
+
+body.news #content .entry-summary h4,
+body.news #subpages-display h5,
+body.news #subpages-display ul li a,
+body.news .posts a {
+
+}
+
+body.join-us #content .entry-summary h4,
+body.join-us #subpages-display h5,
+body.join-us #subpages-display ul li a,
+body.join-us .posts a { font-weight: bold; color: #026636;
+
+}
+
+body.food #content .entry-summary h4,
+body.food #subpages-display h5,
+body.food #subpages-display ul li a,
+body.food .posts a {
+
+}
+
+body.community #content .entry-summary h4,
+body.community #subpages-display h5,
+body.community #subpages-display ul li a,
+body.community .posts a {
+
+}
+
+body.about #content .entry-summary h4,
+body.about #subpages-display h5,
+body.about #subpages-display ul li a,
+body.about .posts a {
+
+}
+
+
+#upcoming-events ul,
+#upcoming-events li {
+list-style-type : none;
+margin-left: 0em;
+}
+
+.ec3_list.ec3_list_day {
+color : #000;
+font-weight : normal;
+font-size : 1em;
+}
+
+.ec3_list ul li a {
+font-weight: normal;
+font-size: 1.25em;
+}
+
+#upcoming-events ul.ec3_events li.ec3_list ul {
+font-size: 0.8em;
+}
+
+.recent_with_excerpt ul,
+.recent_with_excerpt li {
+list-style-type : none;
+padding-left : 0;
+margin-left : 0;
+}
+
+.recent_with_excerpt .excerpt {
+padding : 0;
+margin-top : 1em;
+}

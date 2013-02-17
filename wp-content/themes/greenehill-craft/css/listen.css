@@ -1,0 +1,752 @@
+
+/* ############# resetting the css resets #############  */
+
+.content ul li:before {
+content : '' !important;
+}
+
+.content ul li {
+text-indent : 0 !important;
+}
+
+
+input#__ac_password,
+input#__ac_name  {
+display : block !important;
+border : 1px solid #ccc !important;
+padding : .5em !important;
+width : 190px !important;
+}
+
+textarea:hover, input[type='text']:hover, input[type='password']:hover, textarea:focus, input[type='text']:focus, input[type='password']:focus, select:focus { 
+border-color: #adadad !important; 
+outline: 0 !important; 
+}
+
+
+textarea, 
+input[type='text'], 
+input[type='password'], 
+select { 
+border: 1px solid #ccc !important; 
+background: #fff; 
+}
+
+
+
+textarea:focus, input[type='text']:focus, 
+input[type='password']:focus, select:focus { 
+outline: none !important; 
+}
+
+input, select { cursor: text !important; }
+input[type='text'] { cursor: text; }
+
+
+.content code, .content pre {
+color : #313131 !important;
+line-height : 1.3em !important;
+}
+
+/* end overridding resets */
+
+
+/* ----- deliverance stripped out the selfclear, 
+		 so let's manually replace it ---- */
+#header {
+display : block !important;
+}
+
+#header:after {
+content: ".";
+display: block;
+height: 0;
+clear: both;
+visibility: hidden;
+}
+
+/* end selfclear */
+
+
+
+
+/* ----- things not to show ---- */
+.documentEditable #contentActionMenus, 
+#breadcrumbs-you-are-here, 
+p#listaddress {
+display : none !important;
+}
+
+
+/* ----- basic styles ---- */
+
+
+h2.page-heading {
+padding-left : 10px !important;
+padding-right : 15px !important;
+}
+
+
+.content .posts {
+margin-left : 0 !important;
+}
+
+#body .content {
+padding-top : 1em;
+}
+
+
+
+#portal-breadcrumbs {
+border-bottom : 1px solid #cccbba;
+width : 100%;
+float : left;
+margin : 0 0 3em 0 !important;
+padding : 0 !important;
+}
+
+#portal-breadcrumbs:empty {
+border-bottom : 0 !important;
+}
+
+#portal-breadcrumbs span:after {
+content:"\2192";
+padding : 0 .25em;
+color : #666;
+}
+
+#portal-breadcrumbs span span:after, 
+#portal-breadcrumbs span:last-child:after {
+padding : 0;
+content : '';
+}
+
+
+
+.navTree .navTreeItem div {
+display : inline;
+}
+
+
+
+
+/* -------- reset theme styles ---------- */
+
+#heading .content div.sub-heading  {
+margin-left : 34.5em;
+
+}
+
+
+
+
+
+/* ----- above message table ---- */
+#listen-actions a {
+text-decoration : none !important;
+}
+
+#listen-actions a button {
+margin : 0 0 1em 0 !important;
+}
+
+
+
+/* ----- email thread styles ---- */
+
+h3#page-heading {
+margin-top: 2em;
+font-size : 1.5em;
+}
+
+
+.content ul#forum-thread {
+border-bottom : 1px solid #ccc !important;
+margin-bottom : 3em !important;
+list-style-type : none;
+}
+
+#forum-thread pre, 
+#message_view pre {
+padding-top : 2em !important;
+padding-left : 1em !important;
+width:603px !important;
+font-size : .95em;
+overflow : scroll;
+}
+
+
+
+#forum-thread li h3, 
+#message_view h3 {
+font-size : 1em !important;
+}
+
+h3.message-from,
+h3.message-subject,
+h3.message-date {
+line-height : 1.75em !important;
+background-color : #f6f5ec;
+padding : .25em 0 0 .4em !important;
+border-left : 1px solid #ccc !important;
+border-right : 1px solid #ccc !important;
+margin : 0 !important;
+}
+
+#forum-thread li h3 .heading {
+font-weight : bold;
+}
+
+#forum-thread {
+margin : 0 !important;
+}
+
+a#to_threaded {
+padding-bottom : 1em !important;
+padding-top : 0 !important;
+display : block !important;
+}
+
+
+.message-date {
+border-bottom : 1px solid #666;
+padding-bottom : .5em !important;
+margin-bottom : 3em !important;
+}
+
+#forum-thread li {
+margin : 0 !important;
+padding : 0 !important;
+}
+
+#forum-thread li, 
+#message_view {
+border-top : 1px solid #ccc !important;
+}
+
+#forum-thread li ul {
+margin-top : 2em !important;
+}
+
+
+
+.mail-attachments {
+background-color : #f6f5ec;
+padding : .5em !important;
+margin-bottom : 0em !important;
+}
+
+#forum-control-form {
+border-bottom : 2px solid #666 !important;
+background-color : #fff;
+padding : 2em 1em !important;
+border-top : 1px solid #ccc !important;
+border-left : 1px solid #ccc !important;
+border-right : 1px solid #ccc !important;
+margin : 3em 0 0 0 !important;
+}
+
+#reply-structure {
+background-color : #f6f5ec;
+border : 1px solid #e5e5e5 !important;
+border-top : 0 !important;
+margin : 0 0 3em 0 !important;
+}
+
+#reply-structure li {
+border-top : 0 !important; 
+}
+
+#reply-structure dt {
+padding : 1em .5em .5em 1em !important;
+margin : 0 !important;
+}
+
+#reply-structure dd {
+padding-bottom : .25em !important;
+}
+
+
+#listaddress, 
+#listmanagers, 
+#list-type, 
+#archival-state {
+font-size : .9em !important;
+background-color : #f6f5ec !important;
+margin : 0 !important; 
+padding : 1em !important;
+border-bottom : 1px solid #dcdcdc;
+}
+
+#archival-state {
+border-bottom : 0;
+}
+
+#listaddress b, 
+#listmanagers b, 
+#list-type b, 
+#archival-state b {
+font-size : 1.2em !important;
+font-weight : bold !important;
+}
+
+
+/* ---- targets the list info box (address,managers,type,archive) ----  */
+
+div div div script + ul {
+margin : 0 !important;
+}
+
+
+/* ---- targets the list of mailing lists within a group ---- */
+
+.column-view #content div dl dd {
+border-bottom : 1px solid #e2e2e2 !important;
+padding : 0 0 1em .5em !important;
+font-size : .9em !important;
+}
+
+/* ---- targets view buttons above the messages table ---- */
+
+p#listaddress + table, 
+p#listaddress + table td {
+border : 0 !important;
+padding : 0 !important;
+}
+
+
+
+
+/* ----- shows page numbers ---- */
+.listingBar {
+margin : 1em 0 2em 0 !important;
+}
+
+.list-views + .listingBar {
+margin : 2em 0 0 0 !important; 
+}
+
+.listingBar a {
+margin : 0 1em !important;
+}
+
+.listingBar .next a {
+margin-left : 0 !important;
+}
+
+
+
+
+
+/* ---- targets heading/cells of messages table ---- */
+
+
+#forum-topics, 
+#threads-listing, 
+#members-listing  {
+width : 100% !important;
+}
+
+#forum-topics thead th, 
+#threads-listing thead th, 
+#members-listing th {
+font-size : .9em !important;
+background-color : #f6f5ec !important;
+}
+
+
+
+#forum-topics td, 
+#threads-listing td, 
+#members-listing td {
+font-size : 1em !important;
+}
+
+#forum-topics td + td + td + td, 
+#threads-listing td + td + td + td {
+font-size : .85em !important;
+}
+
+#forum-topics tr.odd td, 
+#threads-listing tr.odd td, 
+#members-listing tr.odd td {
+background-color : #fff !important;
+}
+
+
+
+#unsub-instructions {
+padding : 1em 1em .8em 1em !important;
+border : 1px solid #e6e3ba !important;
+background : #fffcd7 !important;
+font-size : .81em !important;
+color : #000 !important;
+border-top : none !important;
+}
+
+
+
+#fieldset-detailsview {
+border : none !important;
+}
+
+/* ############# SIDEBAR #############################################################  */
+
+
+#sidebar-info {
+margin : 0 0 2em 0;
+}
+
+.contentViews {
+margin : .5em 0 2em 0 !important;
+}
+
+.contentViews li {
+margin : 0 0 2em 0;
+display : block;
+}
+
+/* ############# rounded link button style #############  */
+
+p#listaddress + table td a, 
+#message-list-actions a,
+div.list-views a,
+.listingBar .next a, 
+.listingBar .previous a, 
+.contentViews a, 
+.inner-sidebar > a , 
+a.listen-previous-pointer, 
+a.listen-next-pointer {
+color : #192d55 !important;
+font-size : 1.2em !important;
+margin-right : 1em !important;
+background-color : #e9f2f5;
+padding : .5em .5em .3em .5em !important;
+border : 1px solid #ccc !important;
+-moz-border-radius : 4px;
+-webkit-border-radius : 4px;
+text-decoration : none !important;
+}
+
+a.listen-previous-pointer, 
+a.listen-next-pointer {
+float : left;
+margin : 1em 1em 1em 0 !important;
+padding : .3em .5em .2em .5em !important;
+width : 8em !important;
+}
+
+a.listen-next-pointer {
+float : right !important;
+margin : 1em 0 1em 1em !important;
+}
+
+
+
+.inner-sidebar > a {
+-moz-border-radius : 4px 4px 0 0;
+-webkit-border-radius : 4px 4px 0 0;
+padding : .4em .4em .3em .4em !important;
+font-size : .99em !important;
+background-color : #f7f6e8 !important;
+}
+
+
+.contentViews a:hover, 
+.inner-sidebar > a:hover {
+background-color : #fff;
+}
+
+.contentViews a:visited, 
+.inner-sidebar > a:visited {
+color : #192d55 !important;
+}
+
+
+/* -- pagination navigation -- */
+
+.listingBar .previous {
+float : left !important;
+}
+
+.listingBar .next {
+float : right !important;
+}
+
+.listingBar .previous a, 
+.listingBar .next a {
+margin : 0 !important;
+padding : .3em .5em .2em .5em !important;
+background-color : #f6f4e4 !important;
+color : #3366CC !important;
+} 
+
+.listingBar .previous a:hover, 
+.listingBar .next a:hover {
+background-color : #fff !important;
+color : #6C9400 !important;
+}
+
+
+p#listaddress + table td a, 
+#message-list-actions a, 
+div.list-views a {
+margin : 1em 0 !important;
+display : block !important;
+background-color : #f7f6e8 !important;
+padding : .4em .4em .2em .4em !important;
+}
+
+div.list-views a {
+display : inline !important;
+margin : 10em 0 !important;
+}
+
+#message-list-actions a {
+float : left;
+margin : 0 1em 0 0 !important;
+}
+
+
+#message-list-actions {
+margin : 0 0 1em 0 !important;
+float : left;
+width : 100% !important;
+clear : both !important;
+list-style-type : none;
+}
+
+#message-list {
+margin : .5em 0 0 1em;
+}
+
+
+/* ############# shows available lists in a group #############  */
+
+.portletNavigationTree {
+margin : 2.5em 0 3em 0 !important;
+}
+
+
+
+/* ############# Menu of mailing lists groups #############  */
+
+
+#portal-globalnav {
+margin : 0 0 2em 0 !important;
+border : 1px dotted #ccc !important;
+border-width : 0 1px 1px 1px !important;
+}
+
+.column-view + .inner-sidebar {
+margin-bottom : .2em !important;
+}
+
+#portal-globalnav li {
+display : inline;
+margin : 0 !important;
+padding : 0 !important;
+}
+
+#portal-globalnav li a {
+background-color : #f5f5f5 !important;
+display : block !important;
+padding : .6em .5em .4em .5em !important;
+border-top : 1px dotted #ccc !important;
+text-decoration : none !important;
+}
+
+#portal-globalnav li a:hover {
+background-color : #fff !important;
+color : #6C9400 !important;
+}
+
+
+/* ############ search box ############ */
+
+#search-form {
+font-size : 1.1em !important;
+}
+
+#search-form input {
+width : 150px;
+}
+
+#search-form .context {
+width : 60px;
+margin-left : 10px !important;
+}
+
+
+/* ############ Login box in the sidebar ############ */
+
+.portletLogin, 
+#subscription-form {
+padding : .5em !important;
+border : 1px dotted #ccc !important;
+background-color : #f5f5f5;
+margin-bottom : 3em !important;
+}
+
+dt.portletHeader {
+margin : 0 0 1.5em 0 !important;
+}
+
+.portletHeader a {
+text-decoration : none !important;
+font-size : 1.2em !important;
+}
+
+
+#manager_email {
+padding : .5em !important; 
+border : 1px dotted #ccc !important;
+background : #f5f5f5 !important;
+}
+
+#manager_email button {
+margin : .5em !important;
+}
+
+#manager_email a {
+border : none !important;
+text-decoration : none !important;
+}
+
+#manager_email .formControls {
+display : inline !important;
+}
+
+
+/* ############ for user info listing page ############ */
+
+
+.field label {
+font-weight : bold !important;
+}
+
+div.field {
+line-height : 1.25em !important;
+margin-bottom : 1em !important; 
+}
+
+/* undo for actual forms  */
+
+form .field {
+margin : 1em 0 !important;
+}
+
+
+
+
+/* ############ message notifications ############ */
+
+
+
+.portalMessage.info {
+background-color : #FFFA9B;
+border : 1px solid #EAE68F;
+padding : .5em .75em;
+-moz-border-radius : 6px;
+-webkit-border-radius : 6px;
+border-radius : 6px;
+}
+
+.portalMessage.info dt {
+margin-top : 0;
+}
+
+
+
+/* ############ form tabs ############ */
+
+ul.formTabs {
+position: relative;
+display: block;
+margin: 1em 0 -1px 0;
+padding: 0;
+list-style-type: none;
+text-align: left;
+}
+
+
+li.formTab {
+display: inline;
+margin: 0;
+padding: 0;
+}
+
+
+li.formTab a {
+/* */
+display: inline-block;
+}
+
+li.formTab a {
+border-top: 1px solid #8cacbb;
+border-bottom: 1px solid #8cacbb;
+border-left: 1px dotted #8cacbb;
+background: White;
+margin: 0;
+padding: 0.125em 0.75em;
+text-decoration: none;
+}
+
+li.formTab a:visited {
+color: #436976;
+}
+
+li.firstFormTab a {
+border-left: 1px solid #8cacbb;
+}
+
+li.lastFormTab a {
+border-right: 1px solid #8cacbb;
+}
+
+li.formTab a.selected {
+background: #dee7ec;
+}
+
+li.formTab a:hover {
+background: #dee7ec;
+}
+
+li.formTab a.notify {
+background-color: #ffce7b;
+color: Black;
+}
+
+li.formTab a.required span {
+background-image: url(http://devlists.open311.org/raw/required.gif);
+background-position: center right;
+background-repeat: no-repeat;
+padding-right: 8px;
+}
+
+li.formTab a.notify:hover {
+background-color: #ffa500;
+}
+
+.formPanel {
+padding: 1em 1em 1em 1em;
+border: 1px solid #8cacbb;
+}
+.formPanel.hidden {
+display: none;
+}
+
+div.formControls input.hidden {
+display: none;
+}
+
+
+
+
+
+.openidLoginForm .field input {
+width : 18em;
+height : 1.4em;
+background-position : 5px 4px !important;
+padding-left :  25px !important;
+}

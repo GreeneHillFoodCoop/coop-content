@@ -23,6 +23,7 @@ if ( isset($_GET['mcat']) ) { $cat_id = (int) $_GET['mcat']; } else { $cat_id = 
 	<dc:source xmlns:dc='http://purl.org/dc/elements/1.1/'>".home_url()."</dc:source>	
 	{guid}
   </item>\n";
+  if ( get_option( 'mc_use_rss_template' ) == 1 ) { $templates = get_option('mc_templates'); $template = $templates['rss']; }
 // add RSS headers
 $charset = get_bloginfo('charset');
 $output = '<?xml version="1.0" encoding="'.$charset.'"?>

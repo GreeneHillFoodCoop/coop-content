@@ -1,6 +1,6 @@
 <?php
 // define global variables;
-global $initial_listjs, $initial_caljs, $initial_minijs, $initial_ajaxjs, $initial_db, $initial_occur_db, $initial_loc_db, $initial_cat_db, $default_template,$default_user_settings, $mcdb,$grid_template,$list_template,$mini_template,$single_template, $defaults;
+global $initial_listjs, $initial_caljs, $initial_minijs, $initial_ajaxjs, $initial_db, $initial_occur_db, $initial_loc_db, $initial_cat_db, $default_template,$default_user_settings, $mcdb,$grid_template,$list_template,$rss_template,$mini_template,$single_template, $defaults;
 
 $defaults = array(
 	'upcoming'=>array(	
@@ -58,6 +58,27 @@ $single_template = addslashes('<span class="event-time dtstart" title="{dtstart}
 <p>{ical_html}</p>
 <div class="shortdesc">{image}{description}</div>
 <p><a href="{link}" class="event-link external">{title}</a></p></div>');
+
+$rss_template = addslashes("\n<item>
+    <title>{title}</title>
+    <link>{link}</link>
+	<pubDate>{rssdate}</pubDate>
+	<dc:creator>{author}</dc:creator>  	
+    <description><![CDATA[{rss_description}]]></description>
+	<content:encoded><![CDATA[<div class='vevent'>
+    <h1 class='summary'>{rss_title}</h1>
+    <div class='description'>{rss_description}</div>
+    <p class='dtstart' title='{ical_start}'>Begins: {time} on {date}</p>
+    <p class='dtend' title='{ical_end}'>Ends: {endtime} on {enddate}</p>	
+	<p>Recurrance: {recurs}</p>
+	<p>Repetition: {repeats} times</p>
+    <div class='location'>{rss_hcard}</div>
+	{link_title}
+    </div>]]></content:encoded>
+	<dc:format xmlns:dc='http://purl.org/dc/elements/1.1/'>text/html</dc:format>
+	<dc:source xmlns:dc='http://purl.org/dc/elements/1.1/'>".home_url()."</dc:source>	
+	{guid}
+  </item>\n");
 
 $initial_ajaxjs = "jQuery(document).ready(function($){
 	$('.calendar .my-calendar-nav a').live('click', function(e){
@@ -324,7 +345,7 @@ $default_user_settings = array(
 	); 
 
 function mc_default_settings( ) {
-global $default_template, $initial_listjs, $initial_caljs, $initial_minijs, $initial_ajaxjs, $initial_db, $initial_occur_db, $initial_loc_db, $initial_cat_db, $default_user_settings,$grid_template,$list_template,$mini_template,$single_template,$mc_version, $defaults;
+global $default_template, $initial_listjs, $initial_caljs, $initial_minijs, $initial_ajaxjs, $initial_db, $initial_occur_db, $initial_loc_db, $initial_cat_db, $default_user_settings,$grid_template,$rss_template, $list_template,$mini_template,$single_template,$mc_version, $defaults;
 // no arguments
 	add_option('mc_display_author','false');
 	add_option('mc_display_jump','false');
@@ -374,6 +395,7 @@ global $default_template, $initial_listjs, $initial_caljs, $initial_minijs, $ini
 		'grid'=>$grid_template,
 		'list'=>$list_template,
 		'mini'=>$mini_template,
+		'rss'=>$rss_template,
 		'details'=>$single_template,
 		'label'=>'{title}'
 	));

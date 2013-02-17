@@ -2,8 +2,8 @@
 Contributors: sillybean
 Tags: widgets, excerpts
 Requires at least: 2.8
-Tested up to: 3.1
-Stable tag: 2.2
+Tested up to: 3.5
+Stable tag: 2.3.1
 
 
 A widget that lists your most recent posts with optional excerpts.   
@@ -27,8 +27,12 @@ If you would like to send me a translation, please write to me through <a href="
 
 == Changelog ==
 
+= 2.3.1 =
+* Fixing bugs and restoring "more" option broken in 2.3.
+= 2.3 =
+* Added option to display the date.
 = 2.2 =
-* Fixed HTML validation error. (Thanks, Cris!) (August 5, 20)
+* Fixed HTML validation error. (Thanks, Cris!)
 = 2.1 =
 * Added tag limit option
 * All widget input fields are now localized (September 11, 2009)

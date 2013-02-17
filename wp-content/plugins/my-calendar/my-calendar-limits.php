@@ -32,15 +32,19 @@ global $wpdb;
 			} else {
 				$key = esc_sql(trim($key));
 				$cat = $mcdb->get_row("SELECT category_id FROM " . my_calendar_categories_table() . " WHERE category_name = '$key'");
-				$category_id = $cat->category_id;
-				if ($i == 1) {	$select_category .= ($type=='all')?" WHERE (":' (';	}
-				$select_category .= " $data = $category_id";
-				if ($i < $numcat) {
-					$select_category .= " OR ";
-				} else if ($i == $numcat) {
-					$select_category .= ($type=='all')?") ":' ) AND';
+				if ( $cat ) {
+					$category_id = $cat->category_id;
+					if ($i == 1) {	$select_category .= ($type=='all')?" WHERE (":' (';	}
+					$select_category .= " $data = $category_id";
+					if ($i < $numcat) {
+						$select_category .= " OR ";
+					} else if ($i == $numcat) {
+						$select_category .= ($type=='all')?") ":' ) AND';
+					}
+					$i++;	
+				} else {
+					return;
 				}
-				$i++;						
 			}
 		}
 	} else {
@@ -59,7 +63,6 @@ global $wpdb;
 	return $select_category;
 	}
 }
-
 
 function mc_select_author( $author, $type='event' ) {
 $author = urldecode($author);
@@ -126,11 +129,76 @@ global $wpdb;
 	}
 }
 
+function mc_select_host( $host, $type='event' ) {
+$host = urldecode($host);
+$key = '';
+if ( $host == '' || $host == 'all' || $host == 'default' || $host == null ) { return; }
+global $wpdb;
+	$mcdb = $wpdb;
+	if ( get_option( 'mc_remote' ) == 'true' && function_exists('mc_remote_db') ) { $mcdb = mc_remote_db(); }
+	$select_author = '';
+	$data = 'event_host';
+	if ( isset( $_GET['mc_auth'] ) ) { $host = $_GET['mc_host']; }
+	if ( preg_match( '/^all$|^all,|,all$|,all,/i', $host ) > 0 ) {
+		return '';
+	} else {
+ 	if ( strpos( $host, "|" ) || strpos( $host, "," ) ) {
+		if ( strpos($host, "|" ) ) {
+			$hosts = explode( "|", $host );
+		} else {
+			$hosts = explode( ",", $host );		
+		}
+		$numhost = count($hosts);
+		$i = 1;
+		foreach ($hosts as $key) {
+			if ( is_numeric($key) ) {
+				$key = (int) $key;
+				if ($i == 1) { $select_host .= ($type=='all')?" WHERE (":' ('; }				
+				$select_host .= " $data = $key";
+				if ($i < $numhost) {
+					$select_host .= " OR ";
+				} else if ($i == $numhost) {
+					$select_host .= ($type=='all')?") ":' ) AND';
+				}
+			$i++;
+			} else {
+				$key = esc_sql(trim($key));
+				$host = get_user_by( 'login', $key ); // get host by username
+				$host_id = $host->ID;
+				if ($i == 1) {	$select_host .= ($type=='all')?" WHERE (":' (';	}
+				$select_host .= " $data = $host_id";
+				if ($i < $numhost) {
+					$select_host .= " OR ";
+				} else if ($i == $numhost) {
+					$select_host .= ($type=='all')?") ":' ) AND';
+				}
+				$i++;						
+			}
+		}
+	} else {
+		if ( is_numeric( $host ) ) {
+			$select_host = ($type=='all')?" WHERE $data = $host":" event_host = $host AND";
+		} else {
+			$host = esc_sql(trim($host));
+			$host = get_user_by( 'login', $host ); // get author by username
+			
+			if ( is_object($host) ) {
+				$host_id = $host->ID;
+				$select_host = ($type=='all')?" WHERE $data = $host_id":" $data = $host_id AND";
+			} else {
+				$select_host = '';
+			}
+		}
+	}
+	return $select_host;
+	}
+}
+
 function mc_limit_string($type='',$ltype='',$lvalue='') {
 global $user_ID;
 	 $user_settings = get_option('mc_user_settings');
 	 $limit_string = "";
-	 if ( get_option('mc_user_settings_enabled') == 'true' && $user_settings['my_calendar_location_default']['enabled'] == 'on' || isset($_GET['loc']) && isset($_GET['ltype']) || ( $ltype !='' && $lvalue != '' )  ) {
+	 if ( ( get_option('mc_user_settings_enabled') == 'true' && isset( $user_settings['my_calendar_location_default']['enabled'] ) && $user_settings['my_calendar_location_default']['enabled'] == 'on' ) || isset($_GET['loc']) && isset($_GET['ltype']) || ( $ltype !='' && $lvalue != '' )  ) {
 		if ( !isset($_GET['loc']) && !isset($_GET['ltype']) ) {
 			if (  $ltype == '' && $lvalue == '' ) {
 				if ( is_user_logged_in() ) {

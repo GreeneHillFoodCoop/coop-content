@@ -1,8 +1,18 @@
 <?php
 function my_calendar_ical() {
 
-$m = ( isset($_GET['month']) )?$_GET['month']:date('n');
+$p = ( isset($_GET['span']) )?'year':false;
 $y = ( isset($_GET['yr']) )?$_GET['yr']:date('Y');
+$m = ( isset($_GET['month']) )?$_GET['month']:date('n');
+
+if ( $p ) {
+	$from = "$y-1-1";
+	$to = "$y-12-31";
+} else {
+	$d = date( 't',mktime( 0,0,0,$m,1,$y ) );
+	$from = "$y-$m-1";
+	$to = "$y-$m-$d";
+}
 
 global $mc_version;
 // establish template
@@ -23,10 +33,7 @@ $output = 'BEGIN:VCALENDAR
 VERSION:2.0
 METHOD:PUBLISH
 PRODID:-//Accessible Web Design//My Calendar//http://www.mywpcal.com//v'.$mc_version.'//EN';
-	
-	$d = date( 't',mktime( 0,0,0,$m,1,$y ) );
-	$from = "$y-$m-1";
-	$to = "$y-$m-$d";
+
 	$events = my_calendar_grab_events( $from, $to );
 	if ( is_array($events) && !empty($events) ) {
 		foreach ( array_keys($events) as $key) {

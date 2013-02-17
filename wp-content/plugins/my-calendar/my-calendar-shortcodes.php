@@ -1,6 +1,4 @@
 <?php
-
-
 function my_calendar_insert($atts,$content=null) {
 	extract(shortcode_atts(array(
 				'name' => 'all',
@@ -14,6 +12,7 @@ function my_calendar_insert($atts,$content=null) {
 				'ltype' => '',
 				'lvalue' => '',
 				'author' => 'all',
+				'host' => 'all',
 				'id' => 'jd-calendar',
 				'template' => ''
 			), $atts));
@@ -23,7 +22,7 @@ function my_calendar_insert($atts,$content=null) {
 		}
 	}
 	//apply_filters( 'mc_filter_calendar_name',$all_styles,$styles );
-	return my_calendar($name,$format,$category,$showkey,$shownav,$showjump,$toggle,$time, $ltype, $lvalue, $id, $template,$content,$author );
+	return my_calendar($name,$format,$category,$showkey,$shownav,$showjump,$toggle,$time, $ltype, $lvalue, $id, $template,$content,$author,$host );
 }
 
 function my_calendar_insert_upcoming($atts) {
@@ -37,7 +36,8 @@ function my_calendar_insert_upcoming($atts) {
 				'order' => 'asc',
 				'skip' => '0',
 				'show_today' => 'yes',
-				'author' => 'default'			
+				'author' => 'default',
+				'host' => 'default'
 			), $atts));
 	return my_calendar_upcoming_events($before, $after, $type, $category, $template, $fallback, $order, $skip, $show_today, $author );
 }
@@ -46,6 +46,7 @@ function my_calendar_insert_today($atts) {
 	extract(shortcode_atts(array(
 				'category' => 'default',
 				'author' => 'default',
+				'host' => 'default',
 				'template' => 'default',
 				'fallback' => ''
 			), $atts));

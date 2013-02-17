@@ -54,36 +54,6 @@ function my_calendar_draw_events($events, $type, $process_date, $time, $template
 		$event =& $events[$key];
 		$output_array[] = my_calendar_draw_event($event, $type, $process_date,$time,$template);
 	}
-	//} else {
-		/* foreach(array_keys($events) as $key ) {
-			$event =& $events[$key];
-			$output_array[] = my_calendar_draw_event($event, $type, $process_date,$time,$template);
-		}		
-		/*foreach(array_keys($temp_array) as $key) {
-			$event =& $temp_array[$key];
-			// if any event this date is in the holiday category, we are skipping
-			if ( $event->event_category == get_option('mc_skip_holidays_category') ) {
-				$skipping = true;
-				break;
-			}
-		}
-		// check each event, if we're skipping, only include the holiday events.
-		$sum = 0;
-		foreach(array_keys($temp_array) as $key) {
-			$event =& $temp_array[$key];	
-			if ($skipping == true) {
-				if ($event->event_category == get_option('mc_skip_holidays_category') ) {
-					$output_array[] = my_calendar_draw_event($event, $type, $process_date,$time,$template);
-				} else {
-					if ( $event->event_holiday == '0' ) { // '1' means "is canceled"
-						$output_array[] = my_calendar_draw_event($event, $type, $process_date,$time,$template);
-					}
-				}
-			} else {
-				$output_array[] = my_calendar_draw_event($event, $type, $process_date,$time,$template);
-			}
-		}*/
-	//}
 	if ( is_array($output_array) ) {
 		foreach (array_keys($output_array) as $key) {
 			$value =& $output_array[$key];	
@@ -200,7 +170,7 @@ jQuery(document).ready(function($) {
 	$current_date = date_i18n($date_format,strtotime($process_date));
 	$event_date = ($type == 'single')?$current_date.', ':'';
 	if ( $event->event_span == 1 ) { $group_class = ' multidate group'.$event->event_group_id; } else { $group_class = ''; }
-	$header_details .= ($type != 'list' && $type != 'single')?"<h3 class='event-title summary$group_class'>$wrap$image".$mytitle."$balance</h3>\n":'';
+	$header_details .= ( $type != 'single' && $type != 'list' )?"<h3 class='event-title summary$group_class'>$wrap$image".$mytitle."$balance</h3>\n":'';
 	$title = apply_filters( 'mc_before_event_title','',$event );
 	$title .= ($type == 'single' )?"<h2 class='event-title summary'>$image $mytitle</h2>\n":'';
 	$title .= apply_filters( 'mc_after_event_title','',$event );
@@ -271,8 +241,7 @@ jQuery(document).ready(function($) {
 		if ( $event->event_link_expires == 0 ) {
 			$event_link = esc_url($event->event_link);
 		} else {
-			$offset = (60*60*get_option('gmt_offset'));	
-			if ( my_calendar_date_comp( $event->event_end,date_i18n('Y-m-d',time()+$offset ) ) ) {
+			if ( my_calendar_date_xcomp( $event->occur_end,date_i18n('Y-m-d',current_time('timestamp') ) ) ) {
 				$event_link = '';
 			} else {
 				$event_link = esc_url($event->event_link);
@@ -325,7 +294,7 @@ jQuery(document).ready(function($) {
 		// if we're opening in a new page, there's no reason to display any of that. Later, re-write this section to make this easier to skip.
 		if ( $type == 'calendar' && get_option('mc_open_uri') == 'true' && $time != 'day' ) $body_details = $description = $short = $status = '';
 
-		$subdetails = ( get_option('mc_open_uri') =='true')?"":"<div class='sub-details'>$subdetails</div>";
+		$subdetails = ( get_option('mc_open_uri') == 'true' && $type == 'grid' || $type == 'mini' )?"":"<div class='sub-details'>$subdetails</div>";
 		$body_details .= $subdetails;
 		if ( $event_link != '' && get_option( 'mc_event_link' ) != 'false' ) {
 			$is_external = mc_external_link( $event_link );	
@@ -451,7 +420,7 @@ $current_url = mc_get_current_url();
 }
 
 function my_calendar_print() {
-global $wp_plugin_url;
+$wp_plugin_url = plugin_dir_url( __FILE__ );
 $category=(isset($_GET['mcat']))?$_GET['mcat']:''; // these are all sanitized elsewhere
 $time=(isset($_GET['time']))?$_GET['time']:'month';
 $ltype=(isset($_GET['ltype']))?$_GET['ltype']:'';
@@ -486,7 +455,7 @@ echo "
 <link rel='stylesheet' href='$stylesheet' type='text/css' media='screen,print' />
 </head>
 <body>\n";
-echo my_calendar('print','calendar',$category,'no','no','no','no',$time,$ltype,$lvalue,$id,$template,$content,$author);
+echo my_calendar('print','calendar',$category,'no','no','no','no',$time,$ltype,$lvalue);
 $return_url = ( get_option('mc_uri') != '' )?get_option('mc_uri'):home_url();
 echo "<p class='return'><a href='$return_url'>".__('Return to site','my-calendar')."</a></p>";
 echo '
@@ -665,7 +634,11 @@ function my_calendar($name,$format,$category,$showkey,$shownav,$showjump,$toggle
 		if ( isset($_GET['yr']) && $main_class == $cid ) {
 			$c_year = (int) $_GET['yr'];
 		} else {
-			$c_year = date("Y",time()+($offset));			
+			if ( $time == 'week' && date('j', current_time( 'timestamp' ) ) <= 6 && date('n', current_time( 'timestamp' ) ) == 1 ) {
+				$c_year = ( date("Y",current_time( 'timestamp' ) ) )-1;
+			} else {
+				$c_year = date("Y",current_time( 'timestamp' ) );
+			}			
 		}
 		// Years get funny if we exceed 3000, so we use this check
 		if ( !($c_year <= 3000 && $c_year >= 0)) {
@@ -789,10 +762,10 @@ function my_calendar($name,$format,$category,$showkey,$shownav,$showjump,$toggle
 			// if showing multiple months, figure out how far we're going.
 			$num_months = ($time == 'week')?1:get_option('mc_show_months');
 			$through_date = mktime(0,0,0,$c_month+($num_months-1),$c_day,$c_year);
-
-			$current_date_header = date_i18n('F Y',$current_date);
+			$month_format = ( get_option( 'mc_month_format' ) == '' ) ? 'F Y' : get_option( 'mc_month_format' );
+			$current_date_header = date_i18n( $month_format,$current_date);
 			$current_month_header = ( date('Y',$current_date) == date('Y',$through_date) )?date_i18n('F',$current_date):date_i18n('F Y',$current_date);
-			$through_month_header = date_i18n('F Y', $through_date);
+			$through_month_header = date_i18n( $month_format, $through_date);
 		
 			// Adjust the days of the week if week start is not Monday
  				$and = __("and",'my-calendar');
@@ -1186,12 +1159,12 @@ $home = '';
 			$home = get_bloginfo('url') . '/'; 		
 		} else if ( is_home() ) {
 			$page = get_option('page_for_posts');
-			$home = get_permalink($page); 	
+			$home = get_permalink( $page ); 	
 		} else if ( is_archive() ) {
 			$home = ''; // an empty string seems to work best; leaving it open.
 		} else {
-			$home = get_permalink(); 	// so, if the calendar is in a custom post type which is inserted in a page, this gets the post type's link. 
-										// I think that's actually what it should do, and am not inclined to fix it...have to think.
+			wp_reset_query(); // break out of any alternate loop that's been set up.
+			$home = get_permalink();
 		}
 	}
 	$variables = $_GET;
@@ -1385,7 +1358,7 @@ global $user_ID;
 		if ( is_user_logged_in() ) {
 			get_currentuserinfo();
 			$current_settings = get_user_meta( $user_ID, 'my_calendar_user_settings', true );
-			$tz = $current_settings['my_calendar_tz_default'];
+			$tz = ( isset($current_settings['my_calendar_tz_default'] ) )?$current_settings['my_calendar_tz_default']:'';
 		} else {
 			$tz = '';
 		}

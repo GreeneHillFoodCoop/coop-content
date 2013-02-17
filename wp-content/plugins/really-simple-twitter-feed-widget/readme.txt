@@ -3,8 +3,8 @@ Contributors: whiletrue
 Donate link: http://www.whiletrue.it/
 Tags: twitter, twitter sidebar, sidebar, social sidebar, widget, plugin, posts, links, twitter widget, twitter feed, simple twitter
 Requires at least: 2.9+
-Tested up to: 3.4.2
-Stable tag: 1.3.12
+Tested up to: 3.5.1
+Stable tag: 1.3.17
 
 Shows the latest tweets from a Twitter account in a sidebar widget.
 
@@ -21,14 +21,14 @@ so it won't be possible anymore for us to provide any "really simple" Twitter wi
 
 = Reference =
 
-For more informations: http://www.whiletrue.it/en/projects/wordpress/25-really-simple-twitter-feed-widget-per-wordpress.html
+For more informations: [www.whiletrue.it](http://www.whiletrue.it/really-simple-twitter-feed-widget-for-wordpress/ "www.whiletrue.it")
 
 Do you like this plugin? Give a chance to our other works:
 
-* [Really Simple Facebook Twitter Share Buttons](http://www.whiletrue.it/en/projects/wordpress/22-really-simple-facebook-twitter-share-buttons-per-wordpress.html "Really Simple Facebook Twitter Share Buttons")
-* [Most and Least Read Posts](http://www.whiletrue.it/en/projects/wordpress/29-most-and-least-read-posts-widget-per-wordpress.html "Most and Least Read Posts")
-* [Tilted Tag Cloud Widget](http://www.whiletrue.it/en/projects/wordpress/36-tilted-tag-cloud-widget-per-wordpress.html "Tilted Tag Cloud Widget")
-* [Reading Time](http://www.whiletrue.it/en/projects/wordpress/17-reading-time-per-wordpress.html "Reading Time")
+* [Really Simple Facebook Twitter Share Buttons](http://www.whiletrue.it/really-simple-facebook-twitter-share-buttons-for-wordpress/ "Really Simple Facebook Twitter Share Buttons")
+* [Most and Least Read Posts](http://www.whiletrue.it/most-and-least-read-posts-widget-for-wordpress/ "Most and Least Read Posts")
+* [Tilted Tag Cloud Widget](http://www.whiletrue.it/tilted-tag-cloud-widget-per-wordpress/ "Tilted Tag Cloud Widget")
+* [Reading Time](http://www.whiletrue.it/reading-time-for-wordpress/ "Reading Time")
 
 
 == Installation ==
@@ -56,11 +56,33 @@ The release 1.2.3 is based on the work of Frank Gregor.
 
 The releases 1.3.5 and 1.3.7 are based on the work of Jim Durand.
 
+= Translators =
+
+* Branco, Slovak translation (WebHostingGeeks.com)
+* WhileTrue, Italian translation (www.whiletrue.it)
+* Inspirats, French translation (rysk-x.com)
+* Aleksandra Czuba, Polish translation (www.iwasindira.com)
+
 == Screenshots ==
 1. Sample content, using default options (e.g. no active links)  
 2. Options available in the Settings menu 
 
 == Changelog ==
+
+= 1.3.17 =
+* Added: Polish translation by Aleksandra Czuba (www.iwasindira.com)
+
+= 1.3.16 =
+* Added: French translation by Inspirats (rysk-x.com)
+
+= 1.3.15 =
+* Added: Slovak translation by Branco (WebHostingGeeks.com)
+
+= 1.3.14 =
+* Fixed: widget_title filter
+
+= 1.3.13 =
+* Fixed: storing feed error 
 
 = 1.3.12 =
 * Changed: more feed error catching 
@@ -149,6 +171,9 @@ The releases 1.3.5 and 1.3.7 are based on the work of Jim Durand.
 
 == Upgrade Notice ==
 
+= 1.3.13 =
+A blocking bug appeared in the 1.3.12 release is fixed
+
 = 1.3.9.1 =
 A "saturday" bug appeared in the 1.3.9 release is fixed (the Twitter icon wasn't properly shown)
 
@@ -163,8 +188,3 @@ Due to the FB Widget API adoption, existing widgets need to be recreated
 
 = 1.0.0 =
 Initial release
-
-
-== Upcoming features ==
-
-* Cache time customization

@@ -464,7 +464,7 @@ function my_calendar_print_form_fields( $data,$mode,$event_id ) {
 
 <div class="ui-sortable meta-box-sortables">
 <div class="postbox">	
-	<h3><?php _e('Add/Edit Event','my-calendar'); ?></h3>
+	<h3><?php _e('Add/Edit Event','my-calendar'); ?> <small>(<a href="#mc-manage"><?php _e('Edit events','my-calendar'); ?>)</a></small></h3>
 	<div class="inside">
 			<p>
                 <input type="submit" name="save" class="button-primary" value="<?php _e('Save Event','my-calendar'); ?>" />
@@ -495,7 +495,9 @@ function my_calendar_print_form_fields( $data,$mode,$event_id ) {
 				<input type="hidden" value="1" name="event_approved" />
 	<?php } ?>
 <?php } else { // case: adding new event (if use can, then 1, else 0) ?>
-<?php if ( current_user_can( 'mc_approve_events' ) ) { $dvalue = 1; } else { $dvalue = 0; } ?>
+<?php 	if ( get_option( 'mc_event_approve') != 'true' ) {
+			$dvalue = 1;
+		} else if ( current_user_can( 'mc_approve_events' ) ) { $dvalue = 1; } else { $dvalue = 0; } ?>
 			<input type="hidden" value="<?php echo $dvalue; ?>" name="event_approved" />
 <?php } ?>
 		</p>
@@ -622,11 +624,11 @@ function my_calendar_print_form_fields( $data,$mode,$event_id ) {
 			?>
 			<p>
 			<label for="event_begin" id="eblabel"><?php _e('Start Date (YYYY-MM-DD)','my-calendar'); ?> <span><?php _e('(required)','my-calendar'); ?></span></label> <input type="text" id="event_begin" name="event_begin[]" class="event_begin calendar_input" size="11" value="<?php echo $event_begin; ?>" /> <label for="event_time"><?php _e('Time (hh:mm am/pm)','my-calendar'); ?></label> <input type="text" id="event_time" name="event_time[]" class="input" size="10"	value="<?php 
-					$offset = (60*60*get_option('gmt_offset'));
+					$offset = (60*60*get_option('gmt_offset')); // need this for below
 					if ( !empty($data) ) {
 						echo ($data->event_time == "00:00:00" && $data->event_endtime == "00:00:00")?'':date("h:i a",strtotime($data->event_time));
 					} else {
-						echo date_i18n("h:i a",time()+$offset);
+						echo date_i18n("h:i a",current_time('timestamp') );
 					}?>" /> <input type="checkbox" value="1" id="event_allday" name="event_allday"<?php if ( !empty($data) && ( $data->event_time == '00:00:00' && $data->event_endtime == '00:00:00' ) ) { echo " checked=\"checked\""; } ?> /> <label for="event_allday"><?php _e('All day event','my-calendar'); ?></label>
 			</p>
 			<p>
@@ -953,7 +955,7 @@ function jd_events_display_list( $type='normal' ) {
 	$found_rows = $wpdb->get_col("SELECT FOUND_ROWS();");
 	$items = $found_rows[0];
 	?>
-	<h2 class='mc-clear'><?php _e('Manage Events','my-calendar'); ?></h2>
+	<h2 class='mc-clear' id='mc-manage'><?php _e('Manage Events','my-calendar'); ?></h2>
 		<?php if ( get_option('mc_event_approve') == 'true' ) { ?>
 		<ul class="links">
 		<li><a <?php echo ( isset($_GET['limit']) && $_GET['limit']=='published' )?' class="active-link"':''; ?> href="<?php echo admin_url('admin.php?page=my-calendar&amp;limit=published#my-calendar-admin-table'); ?>"><?php _e('Published','my-calendar'); ?></a></li>

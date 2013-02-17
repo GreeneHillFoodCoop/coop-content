@@ -1,5 +1,5 @@
 /* A light-colored theme almost entirely in whites and light grays with black text. */
-.mc-main,.mc-list {background: #fff; }
+.mc-main,.mc-list  {background: #fff; padding: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;color:#333;}
 .mc-main caption, .mc-main .my-calendar-date-switcher, .mc-main .category-key, .mc-main .calendar-event .details, 
 .mc-main .calendar-events {background: #fff; }
 .mc-main .category-key .no-icon {border: 1px solid #555; }
@@ -70,8 +70,8 @@ padding: 5px 0!important;
 letter-spacing: 1px;
 }
 .mc-main th abbr {border-bottom: none;}
-.mc-main h3 {
-font: 700 .8em Arial, Verdana, sans-serif;
+.mc-main h3, .mc-main h3 a {
+font: 700 10px Arial, Verdana, sans-serif;
 margin:3px 0;
 padding:0;
 width: 100%;
@@ -194,7 +194,6 @@ padding:0;
 .mini .my-calendar-nav ul {height: 2em!important;}
 
 .mc-main .my-calendar-nav li {
-float:left;
 list-style-type: none!important; /* It really is pretty important. */;
 }
 
@@ -211,7 +210,6 @@ padding: 1px 3px!important;
 font-size: .7em;
 }
 .mc-main .my-calendar-next {
-margin-left: 4px;
 text-align:right;
 }
 .mc-main.mini .my-calendar-date-switcher label {
@@ -244,12 +242,16 @@ text-decoration: underline;
 .mini .my-calendar-nav ul {height: 2em!important;}
 .mini .my-calendar-nav li a {
 padding: 1px 3px!important;
-font-size: .7em;
+font-size: 10px;
 }
 .mc-main .nextmonth {
 background: #f6f6f6;
 color: #888;
 }
+.mc-main .my-calendar-nav { position: relative; }
+.mc-main .my-calendar-prev { position: absolute; left: 0; top: 0;}
+.mc-main .my-calendar-next { position: absolute; right: 0; top: 0; }
+
 .mc-main .nextmonth .event-title {opacity: .7;}
 .mc-main .nextmonth .mc-date {background: #eee;}
 .mc-main .nextmonth .weekend {color: #888;}

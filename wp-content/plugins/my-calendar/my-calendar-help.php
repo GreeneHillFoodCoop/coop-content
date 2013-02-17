@@ -1,15 +1,47 @@
-<?php
-function my_calendar_help() {
-global $wp_plugin_dir;
-?>
+<?php function my_calendar_help() { ?>
 
 <div class="wrap jd-my-calendar">
 <h2><?php _e('How to use My Calendar','my-calendar'); ?></h2>
 <div class="postbox-container" style="width: 70%">
 <div class="metabox-holder">
 
-<div class="ui-sortable meta-box-sortables">
+<div class="ui-sortable meta-box-sortables">   
 <div class="postbox">
+	<h3><?php _e('My Calendar Help','my-calendar'); ?></h3>
+	<div class="inside">
+	<ul class="mc-settings">
+		<li><a href="#mc-shortcodes"><?php _e('Shortcodes','my-calendar'); ?></a></li>
+		<li><a href="#icons"><?php _e('Icons','my-calendar'); ?></a></li>
+		<li><a href="#mc-styles"><?php _e('Styles','my-calendar'); ?></a></li>
+		<li><a href="#templates"><?php _e('Templating','my-calendar'); ?></a></li>
+		<li><a href="#get-support"><?php _e('Support Form','my-calendar'); ?></a></li>
+		<li><a href="#notes"><?php _e('Helpful Information','my-calendar'); ?></a></li>
+	</ul>
+	</div>
+</div>
+</div>
+
+<div class="ui-sortable meta-box-sortables" id="get-started">
+<div class="postbox">
+<h3 id="help"><?php _e('Getting Started','my-calendar'); ?></h3>
+	<div class="inside">
+	<p>
+	<?php _e('Although the My Calendar plug-in is very complicated in terms of what can be customized, the basic usage is quite simple.','my-calendar'); ?>
+	</p>
+	<ul>
+		<li> - <?php _e('Add the My Calendar shortcode (<code>[my_calendar]</code>) to a page.','my-calendar'); ?></li>
+		<li> - <?php _e('Add events by clicking on the Add/Edit Events link in the admin sidebar or on "Add Events" in the admin toolbar.','my-calendar'); ?></li>
+		<li> - <?php _e('Select your preferred stylesheet in the Styles Editor','my-calendar'); ?></li>
+	</ul>
+	<p>
+	<?php _e('Read more of the basic help documentation on this page or purchase the My Calendar User\'s Guide to customize further -- but the above is all that you need to do to begin using the calendar.','my-calendar'); ?>
+	</p>
+	</div>
+</div>
+</div>
+
+<div class="ui-sortable meta-box-sortables">
+<div class="postbox" id="mc-shortcodes">
 	<h3><?php _e('Shortcode Syntax','my-calendar'); ?></h3>
 	<div class="inside">	
 <p>
@@ -22,7 +54,7 @@ global $wp_plugin_dir;
 </p>
 <p><code>[my_calendar format="list" showkey="yes" shownav="yes" toggle="no" time="week"]</code></p>
 <p>
-<?php _e('The shortcode supports nine attributes:','my-calendar'); ?>
+<?php _e('The shortcode supports these attributes:','my-calendar'); ?>
 </p>
 	<ul>
 	<li><code>category</code>: <?php _e('Names or IDs of categories included in this calendar, comma or pipe separated.','my-calendar'); ?></li>
@@ -35,6 +67,7 @@ global $wp_plugin_dir;
 	<li><code>ltype</code>: <?php _e('The type of location data to restrict by.','my-calendar'); ?></li>
 	<li><code>lvalue</code>: <?php _e('The specific location information to filter to.','my-calendar'); ?></li>
 	<li><code>author</code>: <?php _e('Author or comma-separated list of authors (usernames or IDs) to show events from.','my-calendar'); ?></li>
+	<li><code>host</code>: <?php _e('Host or comma-separated list of hosts (WordPress usernames or IDs) to show events from.','my-calendar'); ?></li>
 	</ul>
 <p>
 <em><?php _e('The main My Calendar short code can be generated from a button in your post and page editor. The mini calendar can also be accessed and configured as a widget.','my-calendar'); ?></em>
@@ -83,14 +116,14 @@ global $wp_plugin_dir;
 		<?php _e('My Calendar is designed to manage multiple calendars. The basis for these calendars are categories; you can easily setup a calendar page which includes all categories, or you can dedicate separate pages to calendars in each category. For an example, this might be useful for you in managing the tour calendars for multiple bands; event calendars for a variety of locations, etc.','my-calendar'); ?>
 		</p>
 		<p>
-		<?php _e('The pre-installed category icons may not be especially useful for your needs or design. I\'m assuming that you\'re going to upload your own icons -- all you need to do is upload them to the plugin\'s icons folder, and they\'ll be available for immediate use, or place them in a folder at "my-calendar-custom" to avoid having them overwritten by upgrades.','my-calendar'); ?> <?php _e('Your icons folder is:','my-calendar'); ?> <code><?php echo $wp_plugin_dir; ?>/my-calendar/icons/</code> <?php _e('You can alternately place icons in:','my-calendar'); ?> <code><?php echo $wp_plugin_dir; ?>/my-calendar-custom/</code>
+		<?php _e('The pre-installed category icons may not be especially useful for your needs or design. I\'m assuming that you\'re going to upload your own icons -- all you need to do is upload them to the plugin\'s icons folder, and they\'ll be available for immediate use, or place them in a folder at "my-calendar-custom" to avoid having them overwritten by upgrades.','my-calendar'); ?> <?php _e('Your icons folder is:','my-calendar'); ?> <code><?php echo plugin_dir_path( __FILE__ ).'icons/'; ?></code> <?php _e('You can alternately place icons in:','my-calendar'); ?> <code><?php echo str_replace( '/my-calendar','',plugin_dir_path( __FILE__ ) ).'my-calendar-custom/'; ?></code>
 		</p>
 		</div>
 	</div>
 </div>
 
 
-<div class="ui-sortable meta-box-sortables">
+<div class="ui-sortable meta-box-sortables" id="mc-styles">
 	<div class="postbox">
 	<h3><?php _e('Custom Styles','my-calendar'); ?></h3>
 		<div class="inside">	
@@ -98,8 +131,8 @@ global $wp_plugin_dir;
 		<?php _e('My Calendar comes with four basic stylesheets. My Calendar will retain changes to these basic stylesheets on upgrade, but if you want to add an entirely new stylesheet, you may wish to store it in the My Calendar custom styles directory.','my-calendar'); ?>
 		</p>
 		<ul>
-		<li><?php _e('Your stylesheet directory is','my-calendar'); ?>: <code><?php echo $wp_plugin_dir; ?>/my-calendar/styles/</code></li>
-		<li><?php _e('Your custom stylesheets directory is','my-calendar'); ?>: <code><?php echo $wp_plugin_dir; ?>/my-calendar-custom/styles/</code></li>
+		<li><?php _e('Your stylesheet directory is','my-calendar'); ?>: <code><?php echo plugin_dir_path( __FILE__ ).'styles/'; ?></code></li>
+		<li><?php _e('Your custom stylesheets directory is','my-calendar'); ?>: <code><?php echo str_replace( '/my-calendar','',plugin_dir_path( __FILE__ ) ).'my-calendar-custom/styles/'; ?></code></li>
 		</ul>
 		<p>
 		<?php _e('You can also add custom styles to your theme directory to provide print styles, mobile styles, and tablet styles. <code>mc-print.css</code>, <code>mc-mobile.css</code>, and <code>mc-tablet.css</code>.','my-calendar'); ?>
@@ -141,6 +174,9 @@ global $wp_plugin_dir;
 		<dt><code>{date}</code></dt>
 		<dd><?php _e('Displays the date on which the event begins.','my-calendar'); ?></dd>
 
+		<dt><code>{began}</code></dt>
+		<dd><?php _e('Displays the date on which the series of events began (for recurring events).','my-calendar'); ?></dd>
+
 		<dt><code>{enddate}</code></dt>
 		<dd><?php _e('Displays the date on which the event ends.','my-calendar'); ?></dd>
 
@@ -177,11 +213,17 @@ global $wp_plugin_dir;
 		<dt><code>{shortdesc_raw}</code></dt>
 		<dd><?php _e('Displays short description without converting paragraphs.','my-calendar'); ?></dd>
 
+		<dt><code>{shortdesc_stripped}</code></dt>
+		<dd><?php _e('Displays short description with any HTML stripped out.','my-calendar'); ?></dd>
+
 		<dt><code>{description}</code></dt>
 		<dd><?php _e('Displays the description of the event.','my-calendar'); ?></dd>
 
 		<dt><code>{description_raw}</code></dt>
 		<dd><?php _e('Displays description without converting paragraphs.','my-calendar'); ?></dd>
+
+		<dt><code>{description_stripped}</code></dt>
+		<dd><?php _e('Displays description with any HTML stripped out.','my-calendar'); ?></dd>
 
 		<dt><code>{image}</code></dt>
 		<dd><?php _e('Image associated with the event.','my-calendar'); ?></dd>
@@ -298,7 +340,7 @@ global $wp_plugin_dir;
 	<?php } ?>	
 	</div>
 </div>
-	
+		
 <div class="ui-sortable meta-box-sortables" id="notes">
 <div class="postbox">
 <h3 id="help"><?php _e('Helpful Information','my-calendar'); ?></h3>

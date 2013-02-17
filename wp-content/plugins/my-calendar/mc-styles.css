@@ -35,10 +35,11 @@ ul.links li {float: left;margin: 0 5px 10px;font-size: .9em;}
 #my-calendar .apply .warning {background: #ffe;color: #a00;padding: 3px;border: 1px solid #333;}
 #my-calendar .break ul {padding: 10px 10px 0;margin-right: 180px;}
 #my-calendar .columns, .jd-my-calendar .columns {-moz-column-count: 3;-moz-column-gap: 20px;-webkit-column-count: 3;-webkit-column-gap: 20px;column-count: 3;column-gap: 20px;}
+#my-calendar .two-columns {-moz-column-count: 2;-moz-column-gap: 30px;-webkit-column-count: 2;-webkit-column-gap: 30px;column-count: 2;column-gap: 30px;}
 .jd-my-calendar .event_image img { max-width: 480px; }
 .event_image img {margin-top: 2px;}
 .mc_support {font-family:'Courier New';background:#fff;padding:5px;}
-.jd-my-calendar .button-primary { position: absolute; top: -24px; right: 10px;}
+.jd-my-calendar .button-primary { position: absolute; top: 0; right: 10px;}
 .jd-my-calendar .button-primary.group { top: -40px; }
 .template-editor, .style-editor { width: 98%; }
 .roles { width: 24%; float: left; min-height: 300px; }
@@ -54,3 +55,4 @@ ul.links li {float: left;margin: 0 5px 10px;font-size: .9em;}
 .jd-my-calendar .default { background: #fff; }
 .jd-my-calendar .button-adjust { top: 10px; right: 0; }
 .jd-my-calendar hr { width: 20%; margin: 0 auto; border: none; border-top: 1px solid #ccc;}
+#mc-shortcodes code { font-size: 1.4em; line-height: 1.5; display: inline-block;}

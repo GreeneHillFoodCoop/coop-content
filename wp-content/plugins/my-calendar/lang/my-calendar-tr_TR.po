@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the My Calendar package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2012-10-29 22:17:05+0000\n"
+"PO-Revision-Date: 2012-11-12 18:21:41+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1424,7 +1424,7 @@ msgstr "Varsayılan ayarları değiştirmek için evet yada hayır seçin."
 
 #: my-calendar-help.php:33
 msgid "Set as \"yes\" to show a link to switch between list and grid formats."
-msgstr ""
+msgstr "Izgara ve liste görünümleri bağlantıları arasında geçiş yapmak için evet olarak işaretleyin"
 
 #: my-calendar-help.php:34
 msgid "Set to \"week\" to show a one week view or to \"day\" to show a single day view. Any other value will show a month view. (Day view shows as a list regardless of format setting.)"
@@ -2376,12 +2376,12 @@ msgstr ""
 
 #: my-calendar-settings.php:441
 msgid "Time format"
-msgstr ""
+msgstr "Zaman formatı"
 
 #: my-calendar-settings.php:441 my-calendar-settings.php:444
 #: my-calendar-settings.php:447
 msgid "Current:"
-msgstr ""
+msgstr "Şu an"
 
 #: my-calendar-settings.php:444
 msgid "Date in grid mode, week view"
@@ -2513,7 +2513,7 @@ msgstr "Tatil Kategorisi"
 
 #: my-calendar-settings.php:567
 msgid "None"
-msgstr ""
+msgstr "Yok"
 
 #: my-calendar-settings.php:583
 msgid "Default setting for event input: If an event coincides with an event in the designated \"Holiday\" category, do not show the event."
@@ -2565,7 +2565,7 @@ msgstr "Takvim Giriş Ayarlarını Kaydet"
 
 #: my-calendar-settings.php:637
 msgid "Multisite Settings (Network Administrators only)"
-msgstr ""
+msgstr "Çoklu site seçenekleri (Ağ yöneticileri için sadece)"
 
 #: my-calendar-settings.php:639
 msgid "Multisite support is a beta feature - use with caution."

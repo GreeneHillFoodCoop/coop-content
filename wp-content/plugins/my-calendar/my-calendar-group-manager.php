@@ -526,7 +526,7 @@ if ( $action == 'add' || $action == 'edit' || $action == 'copy' ) {
 	$title = !empty($post['event_title']) ? trim($post['event_title']) : '';
 	$desc = !empty($post['content']) ? trim($post['content']) : '';
 	$short = !empty($post['event_short']) ? trim($post['event_short']) : '';
-	$repeats = ( !empty($post['event_repeats']) || trim($post['event_repeats'])=='' ) ? trim($post['event_repeats']) : 0;
+	$repeats = ( empty($post['event_repeats']) || trim($post['event_repeats'])=='' ) ? 0 : trim($post['event_repeats']);
 	$host = !empty($post['event_host']) ? $post['event_host'] : $current_user->ID;
 	$category = !empty($post['event_category']) ? $post['event_category'] : '';
     $linky = !empty($post['event_link']) ? trim($post['event_link']) : '';

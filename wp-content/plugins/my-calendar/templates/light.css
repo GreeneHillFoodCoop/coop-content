@@ -1,5 +1,5 @@
 /* A light-colored theme almost entirely in whites and light grays with black text. */
-.mc-main,.mc-list {background: #fff; }
+.mc-main,.mc-list  {background: #fff; padding: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;color:#333;}
 .mc-main caption, .mc-main .my-calendar-date-switcher, .mc-main .category-key, .mc-main .calendar-event .details, 
 .mc-main .calendar-events {background: #fff; }
 .mc-main .category-key .no-icon {border: 1px solid #555; }
@@ -70,8 +70,8 @@ padding: 5px 0!important;
 letter-spacing: 1px;
 }
 .mc-main th abbr {border-bottom: none;}
-.mc-main h3 {
-font: 700 .8em Arial, Verdana, sans-serif;
+.mc-main h3, .mc-main h3 a {
+font: 700 10px Arial, Verdana, sans-serif;
 margin:3px 0;
 padding:0;
 width: 100%;

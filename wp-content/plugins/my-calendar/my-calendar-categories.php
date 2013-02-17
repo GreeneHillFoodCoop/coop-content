@@ -61,8 +61,8 @@ function my_csslist($directory) {
 
 function is_custom_icon() {
 	global $wp_plugin_dir;
-	if (file_exists( $wp_plugin_dir . '/my-calendar-custom/' ) ) {
-		$results = my_dirlist( $wp_plugin_dir . '/my-calendar-custom/' );
+	if (file_exists( str_replace('/my-calendar','',$wp_plugin_dir ). '/my-calendar-custom/' ) ) {
+		$results = my_dirlist(  str_replace('/my-calendar','',$wp_plugin_dir ) . '/my-calendar-custom/' );
 		if ( empty($results) ) {
 			return false;
 		} else {
@@ -173,7 +173,7 @@ global $wpdb;
 	}
 global $path, $wp_plugin_dir,$wp_plugin_url;
 	if ( is_custom_icon() ) {
-		$directory = $wp_plugin_dir . '/my-calendar-custom/';
+		$directory = str_replace('/my-calendar','',$wp_plugin_dir) . '/my-calendar-custom/';
 		$path = '/my-calendar-custom';
 		$iconlist = my_dirlist($directory);
 	} else {

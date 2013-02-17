@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the My Calendar package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2012-10-29 16:20:57+0000\n"
+"PO-Revision-Date: 2012-11-12 18:16:38+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -149,7 +149,7 @@ msgstr "指定したユーザー (ユーザ名またはID) が登録したイベ
 
 #: my-calendar-help.php:45
 msgid "This shortcode displays the output of the Upcoming Events widget. The <code>before</code> and <code>after</code> attributes should be numbers; the <code>type</code> attribute can be either \"event\" or \"days\", and the <code>category</code> and <code>author</code> attributes work the same way as on the main calendar shortcode. Templates work using the template codes listed below. <code>fallback</code> provides text in case there are no events meeting your criteria. Order provides a sort order for the events list &ndash; either ascending (<code>asc</code>) or descending (<code>desc</code>). <code>show_today</code> is an indicator whether or not to include today's events in the list. <code>Skip</code> is the number of events to skip in the upcoming events."
-msgstr ""
+msgstr "このショートコードは、今後のイベントリストを表示します。<code>before</code>属性と<code>after</code>属性には数値を、<code>type</code>属性には \"event\" または \"days\" を指定、<code>category</code>属性と<code>author</code>属性はメインカレンダーショートコードの同名の属性と同じ機能です。template 属性には、下記のテンプレートコードが使用できます。<code>fallback</code>属性には、条件を満たすイベントが存在しないときに表示するテキストを指定します。order には、<code>asc</code>(昇順) または <code>desc</code>(降順) でイベントリストの並べ替え順を指定します。 <code>show_today</code>属性は、リストに今日のイベントを含めるかどうかを指定。<code>skip</code>属性には、今後のイベントのうちスキップさせる個数を数値で指定します。"
 
 #: my-calendar-help.php:49
 msgid "Predictably enough, this shortcode displays the output of the Today's Events widget, with four configurable attributes: category, author, template and fallback text."
@@ -157,7 +157,7 @@ msgstr "このショートコードは「本日のイベント」ウィジェッ
 
 #: my-calendar-help.php:56
 msgid "Displays a single event and/or all dates for that event. If template is set to a blank value, will only display the list of occurrences. If the list attribute is set blank, will only show the event template"
-msgstr ""
+msgstr "単一のイベント、またはそのイベントのすべての開催日を表示します。テンプレートが空白の場合、できごとのリストだけを表示します。list属性が空白の場合、イベントテンプレートのみ表示します。"
 
 #: my-calendar-help.php:68
 msgid "Use the <code>template</code> attribute to show your own customized set of data. The data will be sorted by the <code>datatype</code> value."
@@ -567,11 +567,11 @@ msgstr "カテゴリー名"
 
 #: my-calendar-categories.php:215
 msgid "Category Color (Hex format)"
-msgstr "カテゴリーの色（16進数形式：#000000など）"
+msgstr "カテゴリーの色 (16進数形式)"
 
 #: my-calendar-categories.php:216 my-calendar-categories.php:286
 msgid "Category Icon"
-msgstr "カテゴリー別アイコン"
+msgstr "アイコン"
 
 #: my-calendar-categories.php:236 my-calendar-locations.php:215
 #: my-calendar-styles.php:204
@@ -665,11 +665,11 @@ msgstr "このプラグインの開発を継続するためのご支援に感謝
 
 #: my-calendar-core.php:1388
 msgid "I'll get back to you as soon as I can, after dealing with any support requests from plug-in supporters."
-msgstr ""
+msgstr "プラグイン支援者の方々からのサポートリクエストには、できるだけ早く連絡します。"
 
 #: my-calendar-core.php:1398
 msgid "Please note: I do keep records of those who have donated, <strong>but if your donation came from somebody other than your account at this web site, please note this in your message.</strong>"
-msgstr ""
+msgstr "寄付の履歴は記録していますが、<strong>このWebサイトのアカウント名とは異なる名前で寄付している場合は、その旨をメッセージの中に記載してください。</strong>"
 
 #: my-calendar-core.php:1400
 msgid "From:"
@@ -689,11 +689,11 @@ msgstr "<a href=\"http://www.joedolson.com/articles/my-calendar/users-guide/\">U
 
 #: my-calendar-core.php:1415
 msgid "Send Support Request"
-msgstr "サポート依頼を送信"
+msgstr "サポートリクエストを送信"
 
 #: my-calendar-core.php:1418
 msgid "The following additional information will be sent with your support request:"
-msgstr "下記の情報がサポート依頼とともに送信されます:"
+msgstr "下記の情報がサポートリクエストとともに送信されます:"
 
 #: my-calendar-event-manager.php:13 my-calendar-settings.php:851
 msgid "My Calendar has identified that you have the Calendar plugin by Kieran O'Shea installed. You can import those events and categories into the My Calendar database. Would you like to import these events?"
@@ -1316,7 +1316,7 @@ msgstr "編集するにはイベントグループIDが必要です"
 #: my-calendar-group-manager.php:113 my-calendar-group-manager.php:292
 #: my-calendar.php:340
 msgid "Manage Event Groups"
-msgstr "イベントグループの管理"
+msgstr "グループの管理"
 
 #: my-calendar-group-manager.php:114
 msgid "Grouped events can be edited simultaneously. When you choose a group of events to edit, the form will be pre-filled with the content applicable to the member of the event group you started from. (e.g., if you click on the \"Edit Group\" link for the 3rd of a set of events, the boxes will use the content applicable to that event.). You will also receive a set of checkboxes which will indicate which events in the group should have these changes applied. (All grouped events can also be edited individually.)"
@@ -1400,7 +1400,7 @@ msgstr "基本のショートコードです。投稿・ページの中に、カ
 
 #: my-calendar-help.php:25
 msgid "The shortcode supports nine attributes:"
-msgstr "ショートコードは 9 つの属性をサポートしています:"
+msgstr "このショートコードは、次の属性をサポートしています:"
 
 #: my-calendar-help.php:28
 msgid "Names or IDs of categories included in this calendar, comma or pipe separated."
@@ -1444,7 +1444,7 @@ msgstr "My Calendar ショートコードは、投稿や固定ページの編集
 
 #: my-calendar-help.php:42
 msgid "Additional Calendar Views (Upcoming events, today's events)"
-msgstr "その他のカレンダー表示 (今後のイベント、今日のイベント)"
+msgstr "その他のカレンダー表示 (今後のイベント、本日のイベント)"
 
 #: my-calendar-help.php:52
 msgid "Both Upcoming Events and Today's Events can also be configured using widgets."
@@ -1540,11 +1540,11 @@ msgstr "イベントの開始時刻を表示します"
 
 #: my-calendar-help.php:136
 msgid "Displays the start time for the event adjusted to the current user's time zone settings. Returns <code>{time}</code> if user settings are disabled or if the user has not selected a preferred time zone."
-msgstr ""
+msgstr "ユーザーのタイムゾーンに合わせて調整された、イベントの開始時刻を表示します。タイムゾーン機能がオフになっているか、タイムゾーンが選択されていない場合は、<code>{time}</code>と同じ結果になります。"
 
 #: my-calendar-help.php:139
 msgid "Displays the end time for the event adjusted to the current user's time zone settings. Returns <code>{endtime}</code> if user settings are disabled or if the user has not selected a preferred time zone."
-msgstr ""
+msgstr "ユーザーのタイムゾーンに合わせて調整された、イベントの終了時刻を表示します。タイムゾーン機能がオフになっているか、タイムゾーンが選択されていない場合は、<code>{endtime}</code>と同じ結果になります。"
 
 #: my-calendar-help.php:142
 msgid "Displays the date on which the event begins."
@@ -1560,7 +1560,7 @@ msgstr "イベントの終了時刻を表示します"
 
 #: my-calendar-help.php:151
 msgid "Displays the beginning date to the end date for events. Does not show end date if same as start date."
-msgstr ""
+msgstr "イベントの開始日と終了日を表示します。終了日が同日の場合は、開始日のみ表示します。"
 
 #: my-calendar-help.php:157
 msgid "Timestamp for beginning of event."
@@ -1572,7 +1572,7 @@ msgstr "イベント終了日時"
 
 #: my-calendar-help.php:163
 msgid "For multi-day events displays an unordered list of dates and times for events in this group. Otherwise, beginning date/time."
-msgstr ""
+msgstr "複数回実施イベントの場合は、イベントの日時のリストを表示、それ以外は開始日時を表示します。"
 
 #: my-calendar-help.php:166
 msgid "Displays the WordPress author who posted the event."
@@ -1632,7 +1632,7 @@ msgstr "イベントに関するすべての情報を含むページを自動生
 
 #: my-calendar-help.php:205
 msgid "Requires that the site URL has been provided on the Settings page"
-msgstr ""
+msgstr "[設定]画面のカレンダー出力オプションでサイトのURLを設定しておく必要があります。"
 
 #: my-calendar-help.php:208
 msgid "Displays text indicating whether registration for the event is currently open or closed; displays nothing if that choice is selected in the event."
@@ -1672,7 +1672,7 @@ msgstr "郵便番号を表示します。"
 
 #: my-calendar-help.php:235
 msgid "Shows the custom region entered for the location."
-msgstr ""
+msgstr "地方名を表示します。"
 
 #: my-calendar-help.php:238
 msgid "Displays the country for the event location."
@@ -1704,33 +1704,33 @@ msgstr "イベントが含まれるカテゴリー名を表示します"
 
 #: my-calendar-help.php:262
 msgid "Produces the address of the current event's category icon."
-msgstr "現在のイベントカテゴリー アイコンのアドレスを表示します"
+msgstr "現在のイベントカテゴリー アイコンのアドレスを出力します。"
 
 #: my-calendar-help.php:265
 msgid "Produces the HTML for the current event's category icon."
-msgstr "現在のイベントカテゴリー アイコンの HTMLコードを表示します"
+msgstr "現在のイベントカテゴリー アイコンの HTMLコードを出力します。"
 
 #: my-calendar-help.php:268
 msgid "Produces the hex code for the current event's category color."
-msgstr "現在のイベントの色を表示します"
+msgstr "現在のイベントカテゴリーの色の16進数コードを出力します。"
 
 #: my-calendar-help.php:271
 msgid ""
 "Displays the ID forr\n"
 "\t\t the category the event is in."
-msgstr ""
+msgstr "イベントが属しているカテゴリーのIDを表示します"
 
 #: my-calendar-help.php:275
 msgid "Special use Template Tags"
-msgstr ""
+msgstr "特殊用途のテンプレートタグ"
 
 #: my-calendar-help.php:279
 msgid "A unique ID for the current instance of an event."
-msgstr ""
+msgstr "イベントのインスタンスのユニークID"
 
 #: my-calendar-help.php:282
 msgid "The ID for the event record associated with the current instance of an event."
-msgstr ""
+msgstr "イベントのインスタンスと紐付けられたイベントレコードのID"
 
 #: my-calendar-help.php:292
 msgid "Get Plug-in Support"
@@ -1738,7 +1738,7 @@ msgstr "プラグインのサポート"
 
 #: my-calendar-help.php:297
 msgid "My Calendar support requests can only be sent by administrators."
-msgstr "My Calendar のサポート リクエストは、管理者のみ送信可能です。"
+msgstr "My Calendar のサポート リクエストは、管理者だけが送信できます。"
 
 #: my-calendar-help.php:304
 msgid "Helpful Information"
@@ -1990,7 +1990,7 @@ msgstr "この期間内に設定されているイベントはありません"
 
 #: my-calendar-output.php:908
 msgid "Unrecognized calendar format. Please use one of 'list','calendar', or 'mini'."
-msgstr ""
+msgstr "無効なカレンダー フォーマットです。'list', 'calendar', 'mini' のいずれかを使用してください。"
 
 #: my-calendar-output.php:936
 msgid "Category Key"
@@ -2138,19 +2138,19 @@ msgstr "My Calendar の設定"
 
 #: my-calendar-settings.php:285
 msgid "Management"
-msgstr "管理"
+msgstr "管理設定"
 
 #: my-calendar-settings.php:286
 msgid "Customizable Text"
-msgstr "カスタマイズ テキスト"
+msgstr "テキスト設定"
 
 #: my-calendar-settings.php:287
 msgid "Output"
-msgstr ""
+msgstr "表示設定"
 
 #: my-calendar-settings.php:288
 msgid "Input"
-msgstr ""
+msgstr "入力設定"
 
 #: my-calendar-settings.php:290
 msgid "Multi-site"
@@ -2166,7 +2166,7 @@ msgstr "メール通知"
 
 #: my-calendar-settings.php:294
 msgid "Individual Users"
-msgstr ""
+msgstr "ユーザー設定"
 
 #: my-calendar-settings.php:302
 msgid "Calendar Management Settings"
@@ -2230,7 +2230,7 @@ msgstr "管理設定を保存"
 
 #: my-calendar-settings.php:357
 msgid "My Calendar management settings are only available to administrators."
-msgstr ""
+msgstr "My Calendar 管理設定は管理者のみアクセス可能です。"
 
 #: my-calendar-settings.php:365
 msgid "Calendar Text Settings"
@@ -2370,7 +2370,7 @@ msgstr ""
 
 #: my-calendar-settings.php:438
 msgid "Replaces pop-up in mini calendar"
-msgstr ""
+msgstr "(ミニカレンダー ポップアップの代替)"
 
 #: my-calendar-settings.php:441
 msgid "Time format"
@@ -2391,7 +2391,7 @@ msgstr "日付の書式 (その他の表示モード)"
 
 #: my-calendar-settings.php:450
 msgid "Date formats use the same syntax as the <a href=\"http://php.net/date\">PHP <code>date()</code> function</a>. Save options to update sample output."
-msgstr "日付書式は<a href=\"http://php.net/date\">PHP の<code> date()</code>関数</a>と同じ構文を使います。オプションを保存するとサンプル表示に反映されます。"
+msgstr "日付書式は<a href=\"http://php.net/date\">PHP の<code>date()</code>関数</a>と同じ構文を使います。オプションを保存するとサンプル表示に反映されます。"
 
 #: my-calendar-settings.php:453
 msgid "Show link to My Calendar RSS feed."
@@ -2399,7 +2399,7 @@ msgstr "カレンダーのRSSフィードへのリンクを表示する"
 
 #: my-calendar-settings.php:453
 msgid "RSS feed shows recently added events."
-msgstr "RSSフィードは最近追加されたイベントを含んでいます。"
+msgstr "(RSSフィードは最近追加されたイベントを含んでいます)"
 
 #: my-calendar-settings.php:456
 msgid "Show link to iCal format download."
@@ -2407,11 +2407,11 @@ msgstr "iCalフォーマットのダウンロードを表示する"
 
 #: my-calendar-settings.php:456
 msgid "iCal outputs events occurring in the current calendar month."
-msgstr ""
+msgstr "(今月行われるイベントの情報が iCalデータとして出力されます)"
 
 #: my-calendar-settings.php:460
 msgid "Show link to print-formatted view of calendar"
-msgstr ""
+msgstr "印刷ビューへのリンクを表示"
 
 #: my-calendar-settings.php:463
 msgid "Display a jumpbox for changing month and year quickly?"
@@ -2511,7 +2511,7 @@ msgstr "「休日」カテゴリー"
 
 #: my-calendar-settings.php:567
 msgid "None"
-msgstr ""
+msgstr "なし"
 
 #: my-calendar-settings.php:583
 msgid "Default setting for event input: If an event coincides with an event in the designated \"Holiday\" category, do not show the event."
@@ -2527,7 +2527,7 @@ msgstr "イベントの追加・編集時に表示する入力項目を選択し
 
 #: my-calendar-settings.php:609
 msgid "Show Event Location Dropdown Menu"
-msgstr "登録された場所のドロップダウンメニューを表示"
+msgstr "登録済の場所のドロップダウンメニューを表示"
 
 #: my-calendar-settings.php:609
 msgid "Show Event Short Description field"
@@ -2551,7 +2551,7 @@ msgstr "繰り返しイベントオプションの表示"
 
 #: my-calendar-settings.php:609
 msgid "Use HTML Editor in Event Description Field"
-msgstr "「イベントの説明」の編集にHTMLエディターを使用する"
+msgstr "「イベントの説明」をHTMLエディタで編集"
 
 #: my-calendar-settings.php:622
 msgid "Administrators see all input options"
@@ -2575,23 +2575,23 @@ msgstr "WordPress マルチサイト構成用の設定"
 
 #: my-calendar-settings.php:645
 msgid "The central calendar is the calendar associated with the primary site in your WordPress Multisite network."
-msgstr ""
+msgstr "「セントラル カレンダー」は、WordPressマルチサイト ネットワークの基本サイトに紐付けされたカレンダーです。"
 
 #: my-calendar-settings.php:647
 msgid "Site owners may only post to their local calendar"
-msgstr ""
+msgstr "サイトオーナーは、ローカルカレンダーにだけ投稿できます。"
 
 #: my-calendar-settings.php:648
 msgid "Site owners may only post to the central calendar"
-msgstr ""
+msgstr "サイトオーナーは、セントラルカレンダーにだけ投稿できます。"
 
 #: my-calendar-settings.php:649
 msgid "Site owners may manage either calendar"
-msgstr ""
+msgstr "サイトオーナーは、どちらのカレンダーも管理できます。"
 
 #: my-calendar-settings.php:651
 msgid "Changes only effect input permissions. Public-facing calendars will be unchanged."
-msgstr ""
+msgstr "変更が影響するのは入力権限だけです。公開カレンダーは変更されません。"
 
 #: my-calendar-settings.php:653
 msgid "Sub-site calendars show events from their local calendar."
@@ -2715,11 +2715,11 @@ msgstr "場所の設定を有効化"
 
 #: my-calendar-settings.php:805
 msgid "Use this location list as input control"
-msgstr ""
+msgstr "場所のリストから入力"
 
 #: my-calendar-settings.php:805
 msgid "The normal text entry for this location type will be replaced by a drop down containing these choices."
-msgstr ""
+msgstr "(通常の入力ボックスの代わりに、下記リストの内容を含むドロップダウンリストを表示します)"
 
 #: my-calendar-settings.php:808
 msgid "Select Location Label"
@@ -3132,7 +3132,7 @@ msgstr "開始日と終了日 (開始日と終了日が同じ場合を除く)"
 
 #: my-calendar.php:219
 msgid "Multi-day events: an unordered list of dates/times. Otherwise, beginning date/time."
-msgstr ""
+msgstr "複数回実施イベントの場合は日時のリスト、それ以外は開始日時"
 
 #: my-calendar.php:222
 msgid "Author who posted the event."
@@ -3204,7 +3204,7 @@ msgstr "イベント開催場所の国名"
 
 #: my-calendar.php:279
 msgid "Output the URL for the location."
-msgstr ""
+msgstr "場所の URL を出力"
 
 #: my-calendar.php:282
 msgid "Event address in <a href=\"http://microformats.org/wiki/hcard\">hcard</a> format."
@@ -3237,7 +3237,7 @@ msgstr "My Calendar"
 
 #: my-calendar.php:338
 msgid "Add/Edit Events"
-msgstr "イベントの追加／編集"
+msgstr "イベントの追加・編集"
 
 #: my-calendar.php:344
 msgid "Style Editor"

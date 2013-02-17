@@ -19,6 +19,18 @@ function edit_mc_templates() {
 		echo "<div class=\"updated\"><p><strong>".__('Grid Output Template saved','my-calendar').".</strong></p></div>";
 	}
 	
+	if ( isset($_POST['mc_rss_template'] ) ) {
+		$nonce=$_REQUEST['_wpnonce'];
+		if ( !wp_verify_nonce($nonce,'my-calendar-nonce') ) die("Security check failed");
+
+		$mc_rss_template = $_POST['mc_rss_template'];
+		$templates['rss'] = $mc_rss_template;
+		update_option( 'mc_templates', $templates );
+		update_option( 'mc_use_rss_template',( empty($_POST['mc_use_rss_template'])?0:1 ) );
+
+		echo "<div class=\"updated\"><p><strong>".__('RSS Feed Output Template saved','my-calendar').".</strong></p></div>";
+	}	
+	
 	if ( isset($_POST['mc_list_template'] ) ) {
 		$nonce=$_REQUEST['_wpnonce'];
 		if ( !wp_verify_nonce($nonce,'my-calendar-nonce') ) die("Security check failed");
@@ -52,9 +64,11 @@ function edit_mc_templates() {
 		update_option( 'mc_use_details_template',( empty($_POST['mc_use_details_template'])?0:1 ) );
 		echo "<div class=\"updated\"><p><strong>".__('Event Details Template saved','my-calendar').".</strong></p></div>";
 	}	
-	global $grid_template, $list_template, $mini_template, $single_template;
+	global $grid_template, $list_template, $mini_template, $single_template, $rss_template;
 	$mc_grid_template = stripslashes( ($templates['grid']!='')?$templates['grid']:$grid_template );
 	$mc_use_grid_template = get_option('mc_use_grid_template');
+	$mc_rss_template = stripslashes( ($templates['rss']!='')?$templates['rss']:$rss_template );
+	$mc_use_rss_template = get_option('mc_use_rss_template');	
 	$mc_list_template = stripslashes( ($templates['list']!='')?$templates['list']:$list_template );
 	$mc_use_list_template = get_option('mc_use_list_template');
 	$mc_mini_template = stripslashes( ($templates['mini']!='')?$templates['mini']:$mini_template );
@@ -153,6 +167,28 @@ function edit_mc_templates() {
 		</div>
 	</div>
 	</div>
+	
+	<div class="ui-sortable meta-box-sortables">   
+	<div class="postbox">
+		<h3><?php _e('My Calendar: RSS Event Template','my-calendar'); ?></h3>
+		<div class="inside">
+		<p><?php _e('Notice: HTML templates are very forgiving of errors. RSS templates are not. Be sure to test your changes.','my-calendar'); ?></p>
+		<form method="post" action="<?php echo admin_url("admin.php?page=my-calendar-templates"); ?>">
+		<div><input type="hidden" name="_wpnonce" value="<?php echo wp_create_nonce('my-calendar-nonce'); ?>" /></div>
+		<p>
+		<input type="checkbox" id="mc_use_rss_template" name="mc_use_rss_template" value="1"  <?php mc_is_checked('mc_use_rss_template',1); ?>/> <label for="mc_use_grid_template"><?php _e('Use this custom RSS event template','my-calendar'); ?></label>
+		</p>
+		<p>
+		<label for="mc_rss_template"><?php _e('Your custom template for events in the RSS feed.','my-calendar'); ?></label><br /><textarea id="mc_rss_template" name="mc_rss_template" class="template-editor" rows="12" cols="76"><?php echo $mc_rss_template; ?></textarea>
+		</p>
+		<p>
+			<input type="submit" name="save" class="button-primary" value="<?php _e('Save RSS Template','my-calendar'); ?>" />
+		</p>
+		</form>
+		</div>
+	</div>
+	</div>	
+	
 </div>
 </div>
 

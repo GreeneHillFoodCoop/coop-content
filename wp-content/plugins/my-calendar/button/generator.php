@@ -3,7 +3,7 @@
 	$iswin = preg_match('/:\\\/', dirname(__file__));
 	$slash = ($iswin) ? "\\" : "/";
 	$wp_path = preg_split('/(?=((\\\|\/)wp-content)).*/', dirname(__file__));
-	$wp_path = (isset($wp_path[0]) && $wp_path[0] != "") ? $wp_path[0] : $_SERVER["DOCUMENT_ROOT"];
+	$wp_path = ( isset($wp_path[0]) && $wp_path[0] != "" && $wp_path[0] != dirname(__FILE__) ) ? $wp_path[0] : $_SERVER["DOCUMENT_ROOT"];
 require_once($wp_path . $slash . 'wp-load.php');
 require_once($wp_path . $slash . 'wp-admin' . $slash . 'admin.php'); 
 

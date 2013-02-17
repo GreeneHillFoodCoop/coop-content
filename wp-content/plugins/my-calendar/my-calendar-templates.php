@@ -10,7 +10,7 @@ function jd_draw_template($array,$template,$type='list') {
 		} else {
 			if ( strpos( $template, "{".$key ) !== false ) {
 				if ($type != 'list') {
-					if ( $key == 'link' && $value == '') { $value = ( get_option('mc_uri') != '' )?get_option('mc_uri'):get_bloginfo('url'); }
+					if ( $key == 'link' && $value == '') { $value = ( get_option('mc_uri') != '' )?get_option('mc_uri'):home_url(); }
 					if ( $key != 'guid') { $value = htmlentities($value); }
 				}
 				if ( strpos( $template, "{".$key." " ) !== false ) { // only do preg_match if appropriate
@@ -94,14 +94,16 @@ function mc_hcard( $event, $address='true', $map='true', $source='event' ) {
 	$hcard = "<div class=\"address vcard\">";
 	if ( $address == 'true' ) {
 		$hcard .= "<div class=\"adr\">";
-		if ($event_label != "") {$hcard .= "<strong class=\"org\">".$event_label."</strong><br />";	}					
+		if ($event_label != "") {$hcard .= "<strong class=\"org\">".$event_label."</strong><br />";	}
+		$hcard .= ( $event_street.$event_street2.$event_city.$event_state.$event_postcode.$event_country.$event_phone == '' )?'':"<div class='sub-address'>";
 		if ($event_street != "") {$hcard .= "<div class=\"street-address\">".$event_street."</div>";}
 		if ($event_street2 != "") {	$hcard .= "<div class=\"street-address\">".$event_street2."</div>";	}
-		if ($event_city != "") {$hcard .= "<span class=\"locality\">".$event_city."</span>, ";}						
+		if ($event_city != "") {$hcard .= "<span class=\"locality\">".$event_city."</span><span class='sep'>, </span>";}						
 		if ($event_state != "") {$hcard .= "<span class=\"region\">".$event_state."</span> ";}
 		if ($event_postcode != "") {$hcard .= " <span class=\"postal-code\">".$event_postcode."</span>";}	
 		if ($event_country != "") {	$hcard .= "<div class=\"country-name\">".$event_country."</div>";}
 		if ($event_phone != "") { $hcard .= "<div class=\"tel\">".$event_phone."</div>";}
+		$hcard .= ( $event_street.$event_street2.$event_city.$event_state.$event_postcode.$event_country.$event_phone == '' )?'':"</div>";
 		$hcard .= "</div>";
 	}
 	if ( $map == 'true' ) {
@@ -121,8 +123,8 @@ function event_as_array($event,$type='html') {
 	$details = array();
 	$date_format = ( get_option('mc_date_format') != '' )?get_option('mc_date_format'):get_option('date_format');	
 	$dateid = $event->occur_id;
-	$month_date = date('dS',strtotime( $event->occur_begin ) );
-	$day_name = date_i18n('l',strtotime($event->occur_begin));
+	$month_date = date( 'dS',strtotime( $event->occur_begin ) );
+	$day_name = date_i18n( 'l',strtotime( $event->occur_begin ) );
 	$week_number = mc_ordinal( week_of_month( date('j',strtotime($event->occur_begin) ) ) +1 );
 	$id = $event->event_id;
 	$offset = (60*60*get_option('gmt_offset'));  
@@ -162,9 +164,14 @@ function event_as_array($event,$type='html') {
 	$details['repeats'] = $event->event_repeats;
 	$real_end_date = $event->occur_end;
 	$date = date_i18n( $date_format,strtotime( $event->occur_begin ) );
+	$date_utc = date_i18n( $date_format, $event->ts_occur_begin );
 	$date_end = date_i18n( $date_format,strtotime($real_end_date) );
+	$date_end_utc = date_i18n( $date_format, $event->ts_occur_end );
+	$details['date_utc'] = $date_utc;
+	$details['date_end_utc'] = $date_end_utc;
 	$details['image'] = ( $event->event_image != '' )?"<img src='$event->event_image' alt='' class='mc-image' />":'';
-	$details['time'] = ( date( 'H:i:s', strtotime($event->occur_begin) ) == '00:00:00' )?get_option( 'mc_notime_text' ):date(get_option('mc_time_format'),strtotime($event->occur_begin));
+	//$details['time'] = ( date( 'H:i:s', strtotime($event->occur_begin) ) == '00:00:00' )?get_option( 'mc_notime_text' ):date(get_option('mc_time_format'),strtotime($event->occur_begin));
+	$details['time'] = ( date( 'H:i:s', strtotime( $event->occur_begin ) ) == '00:00:00' )?get_option( 'mc_notime_text' ):date(get_option('mc_time_format'), strtotime( $event->occur_begin ) );
 	$endtime = ( date( 'H:i:s', strtotime($event->occur_end) ) == '00:00:00')?'23:59:00':date( 'H:i:s',strtotime($event->occur_end) );	
 	$details['endtime'] = ( $event->occur_end == $event->occur_begin || $event->event_hide_end == 1 )?'':date_i18n( get_option('mc_time_format'),strtotime( $endtime ));
 	$tz = mc_user_timezone();
@@ -175,9 +182,8 @@ function event_as_array($event,$type='html') {
 		$details['endusertime'] = ( $local_begin == $local_end )?'':"$local_end";
 	} else {
 		$details['usertime'] = $details['time'];
-		$details['endusertime'] = ( $details['time'] == $details['endtime'] )?'':$details['endtime'];		
+		$details['endusertime'] = ( $details['time'] == $details['endtime'] )?'':$details['endtime'];
 	}
-
 	$offset = get_option('gmt_offset'); // reset offset in hours
 	$os = strtotime($event->occur_begin);
 	$oe = strtotime($event->occur_end);
@@ -187,7 +193,9 @@ function event_as_array($event,$type='html') {
 	$details['ical_end'] = $dtend;
 		$ical_link = mc_build_url( array('vcal'=>$dateid), array('month','dy','yr','ltype','loc','mcat','format'), get_option( 'mc_uri' ) );
 	$details['ical'] = $ical_link;
-	$dates = mc_event_date_span( $event->event_group_id, $event->event_span, $date );
+		$date_arr = array('occur_begin'=>$event->occur_begin,'occur_end'=>$event->occur_end );
+		$date_obj = (object) $date_arr;
+	$dates = mc_event_date_span( $event->event_group_id, $event->event_span, array( 0=>$date_obj ) );
 	$details['ical_html'] = "<a class='ical' rel='nofollow' href='$ical_link'>".__('iCal','my-calendar')."</a>";
 	$details['dtstart'] = date( 'Y-m-d\TH:i:s', strtotime( $event->occur_begin ) );// hcal formatted
 	$details['dtend'] = date( 'Y-m-d\TH:i:s', strtotime($real_end_date.' '.$endtime) );	//hcal formatted end
@@ -220,6 +228,7 @@ function event_as_array($event,$type='html') {
 	
 	$details['description'] = ( get_option('mc_process_shortcodes') == 'true' )?apply_filters('the_content',$event->event_desc):wpautop(stripslashes($event->event_desc));
 	$details['description_raw'] = stripslashes($event->event_desc);
+	$details['description_stripped'] = strip_tags(stripslashes($event->event_desc));
 	$details['link_title'] = ($details['link'] != '')?"<a href='".$event->event_link."'>".stripslashes($event->event_title)."</a>":stripslashes($event->event_title);
 	$details['location'] = stripslashes($event->event_label);
 	$details['street'] = stripslashes($event->event_street);
@@ -233,6 +242,7 @@ function event_as_array($event,$type='html') {
 	$details['link_map'] = $map;
 	$details['shortdesc'] = ( get_option('mc_process_shortcodes') == 'true' )?apply_filters('the_content',$event->event_short):wpautop(stripslashes($event->event_short));
 	$details['shortdesc_raw'] = stripslashes($event->event_short);
+	$details['shortdesc_stripped'] = strip_tags(stripslashes($event->event_short));
 	$details['event_open'] = $event_open;
 	$details['icon'] = $category_icon;
 	$details['icon_html'] = "<img src='$category_icon' class='mc-category-icon' alt='".__('Category','my-calendar').": ".esc_attr($event->category_name)."' />";
@@ -254,7 +264,7 @@ function event_as_array($event,$type='html') {
 	$details['id'] = $id;
 	$details['group'] = $event->event_group_id;
 	$details['event_span'] = $event->event_span;
-	$details['datespan'] = ($event->event_span != 1)?$date:mc_format_date_span( $dates );
+	$details['datespan'] = ($event->event_span == 1 || ($details['date'] != $details['enddate']) )?mc_format_date_span( $dates ):$date;
 	$details['multidate'] = mc_format_date_span( $dates, 'complex', "<span class='fallback-date'>$date</span><span class='separator'>,</span> <span class='fallback-time'>$details[time]</span>&ndash;<span class='fallback-endtime'>$details[endtime]</span>" );
 	// RSS guid
 	$details['region'] = $event->event_region;
@@ -268,15 +278,18 @@ function event_as_array($event,$type='html') {
 	return $details;
 }
 
-function mc_event_date_span( $group_id, $event_span ) {
+function mc_event_date_span( $group_id, $event_span, $dates=array() ) {
 global $wpdb;
 	$mcdb = $wpdb;
   if ( get_option( 'mc_remote' ) == 'true' && function_exists('mc_remote_db') ) { $mcdb = mc_remote_db(); }
-$group_id = (int) $group_id;
-if ( $group_id == 0 || $event_span != 1 ) return false;
-	$sql = "SELECT occur_begin, occur_end FROM ".my_calendar_event_table()." WHERE occur_group_id = $group_id ORDER BY occur_begin ASC";
-	$dates = $mcdb->get_results( $sql );
-	return $dates; 
+	$group_id = (int) $group_id;
+	if ( $group_id == 0 && $event_span != 1 ) {
+		return $dates;
+	} else {
+		$sql = "SELECT occur_begin, occur_end FROM ".my_calendar_event_table()." WHERE occur_group_id = $group_id ORDER BY occur_begin ASC";
+		$dates = $mcdb->get_results( $sql );
+		return $dates; 
+	}
 }
 function mc_format_date_span( $dates, $display='simple',$default='' ) {
 	if ( !$dates ) return $default;

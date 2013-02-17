@@ -5,7 +5,7 @@ Plugin URI: http://www.joedolson.com/articles/my-calendar/
 Description: Accessible WordPress event calendar plugin. Show events from multiple calendars on pages, in posts, or in widgets.
 Author: Joseph C Dolson
 Author URI: http://www.joedolson.com
-Version: 2.0.10
+Version: 2.1.5
 */
 /*  Copyright 2009-2012  Joe Dolson (email : joe@joedolson.com)
 
@@ -24,7 +24,7 @@ Version: 2.0.10
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 global $mc_version, $wpdb;
-$mc_version = '2.0.10';
+$mc_version = '2.1.5';
 
 // Define the tables used in My Calendar
 if ( function_exists('is_multisite') && is_multisite() && get_site_option('mc_multisite_show') == 1 ) {
@@ -106,6 +106,21 @@ add_action( 'init', 'my_calendar_export_vcal', 200 );
 // Add filters 
 add_filter( 'widget_text', 'do_shortcode', 9 );
 add_filter('plugin_action_links', 'jd_calendar_plugin_action', -10, 2);
+add_filter( 'wp_title','mc_event_filter',10,3 );
+
+function mc_event_filter( $title, $sep, $seplocation ) {
+	if ( isset($_GET['mc_id']) ) {
+		$id = (int) $_GET['mc_id'];
+		$event = mc_get_event( $id );
+		$array = event_as_array( $event );
+		$left_sep = ( $seplocation != 'right' ? ' ' . $sep . ' ' : '' );
+		$right_sep = ( $seplocation != 'right' ? '' : ' ' . $sep . ' ' );		
+		$template = ( get_option( 'mc_event_title_template' ) != '' )? stripslashes( get_option( 'mc_event_title_template' ) ):"$left_sep {title} $sep {date} $right_sep ";
+		return jd_draw_template( $array, $template );
+	} else {
+		return $title;
+	}
+}
 
 // produce admin support box
 function jd_show_support_box( $show='', $add=false, $remove=false ) {
@@ -130,6 +145,10 @@ if ( current_user_can('mc_view_help') ) {
 			<div class="postbox support">
 			<h3><strong><?php _e('Support This Plug-in','my-calendar'); ?></strong></h3>
 			<div class="inside resources">
+				<p>
+				<a href="https://twitter.com/intent/tweet?screen_name=joedolson&text=My%20Calendar%20is%20great%20-%20Thanks!" class="twitter-mention-button" data-size="large" data-related="joedolson">Tweet to @joedolson</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+				</p>
 				<p class="mcbuy"><img src="<?php echo plugins_url('my-calendar/images/guide.png'); ?>" alt="My Calendar User's Guide" class="alignleft" /><?php _e('Help me help you:','my-calendar'); ?> <a href="http://www.joedolson.com/articles/my-calendar/users-guide/" rel="external"><?php _e("Buy the My Calendar User's Guide",'my-calendar'); ?></a></p>
 				<p><?php _e('<strong>Or make a donation today!</strong> Every donation counts - donate $2, $10, or $100 and help me keep this plug-in running!','my-calendar'); ?></p>
 				<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
@@ -150,6 +169,7 @@ if ( current_user_can('mc_view_help') ) {
 			<h3><?php _e('Get Help','my-calendar'); ?></h3>
 			<div class="inside">
 				<ul>
+					<li><strong><a href="<?php echo admin_url("admin.php?page=my-calendar-help"); ?>#get-started"><?php _e("Getting Started",'my-calendar'); ?></strong></a></li>								
 					<li><a href="<?php echo admin_url("admin.php?page=my-calendar-help"); ?>#get-support"><?php _e("Get Support",'my-calendar'); ?></a></li>
 					<li><a href="<?php echo admin_url("admin.php?page=my-calendar-help"); ?>"><?php _e("My Calendar Help",'my-calendar'); ?></a></li>				
 					<li><a href="http://profiles.wordpress.org/users/joedolson/"><?php _e('Check out my other plug-ins','my-calendar'); ?></a></li>
@@ -344,7 +364,7 @@ function my_calendar_menu() {
 // return a result for admin_url in 2.9.2
 if ( !function_exists( 'admin_url' ) ) {
 	function admin_url() {
-		return get_bloginfo('wpurl').'/wp-admin/';
+		return site_url().'/wp-admin/';
 	}
 }
 if ( !function_exists( 'home_url' ) ) {

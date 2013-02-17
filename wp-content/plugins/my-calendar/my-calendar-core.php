@@ -216,7 +216,7 @@ function mc_footer_js() { // need to enqueue these in shortcodes. May need to go
 		if ( get_option('mc_open_day_uri') == 'true' || get_option('mc_open_day_uri') == 'listanchor'  || get_option('mc_open_day_uri') == 'calendaranchor') { $mini_js = str_replace('e.preventDefault();','',$mini_js); }
 		$ajax_js = stripcslashes( get_option( 'mc_ajaxjs' ) );
 
-			if (is_object($wp_query)) {
+			if ( is_object($wp_query) && isset($wp_query->post) ) {
 				$id = $wp_query->post->ID;
 			} 
 			if ( get_option( 'mc_show_js' ) != '' ) {
@@ -408,7 +408,7 @@ function mc_add_roles( $add=false, $manage=false, $approve=false ) {
 
 // Function to check what version of My Calendar is installed and install or upgrade if needed
 function check_my_calendar() {
-	global $wpdb, $initial_listjs, $initial_caljs, $initial_minijs, $initial_ajaxjs,$mc_version,$grid_template,$list_template,$mini_template,$single_template, $defaults;
+	global $wpdb, $initial_listjs, $initial_caljs, $initial_minijs, $initial_ajaxjs,$mc_version,$grid_template,$rss_template, $list_template,$mini_template,$single_template, $defaults;
 	$mcdb = $wpdb;
 	mc_if_needs_permissions();
 	$current_version = ( get_option('mc_version') == '') ? get_option('my_calendar_version') : get_option('mc_version');
@@ -460,7 +460,8 @@ function check_my_calendar() {
 		if ( version_compare( $current_version, "1.11.0", "<" ) ) { $upgrade_path[] = "1.11.0"; }
 		if ( version_compare( $current_version, "1.11.1", "<" ) ) { $upgrade_path[] = "1.11.1"; }
 		if ( version_compare( $current_version, "2.0.0", "<" ) ) { $upgrade_path[] = "2.0.0"; }	
-		if ( version_compare( $current_version, "2.0.4", "<" ) ) { $upgrade_path[] = "2.0.4"; }			
+		if ( version_compare( $current_version, "2.0.4", "<" ) ) { $upgrade_path[] = "2.0.4"; }	
+		if ( version_compare( $current_version, "2.1.0", "<" ) ) { $upgrade_path[] = "2.1.0"; }	
 	}
 	// having determined upgrade path, assign new version number
 	update_option( 'mc_version' , $mc_version );
@@ -478,6 +479,12 @@ function check_my_calendar() {
 	foreach ($upgrade_path as $upgrade) {
 		switch ($upgrade) {
 		// only upgrade db on most recent version
+			case '2.1.0':
+				$templates = get_option( 'mc_templates' );
+				global $rss_template;
+				$templates['rss'] = $rss_template;
+				update_option( 'mc_templates', $templates );
+				break;
 			case '2.0.4':
 				update_option('mc_ical_utc','true');
 				break;
@@ -944,8 +951,7 @@ global $wp_query;
 }
 
 function mc_month_comparison($month) {
-	$offset = (60*60*get_option('gmt_offset'));
-	$current_month = date("n", time()+($offset));
+	$current_month = date("n", current_time('timestamp'));
 	if (isset($_GET['yr']) && isset($_GET['month'])) {
 		if ($month == $_GET['month']) {
 			return ' selected="selected"';
@@ -956,8 +962,7 @@ function mc_month_comparison($month) {
 }
 
 function mc_year_comparison($year) {
-	$offset = (60*60*get_option('gmt_offset'));
-		$current_year = date("Y", time()+($offset));
+		$current_year = date("Y", current_time('timestamp'));
 		if (isset($_GET['yr']) && isset($_GET['month'])) {
 			if ($year == $_GET['yr']) {
 				return ' selected="selected"';
@@ -1146,7 +1151,15 @@ function mc_akismet( $event_url='', $description='' ) {
 		return 0;
 }
 
+// duplicate of mc_is_url, which really should have been in this file. Bugger.
+function _mc_is_url($url) {
+	return preg_match('|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i', $url);
+}
+
+
 function mc_external_link( $link, $type='event' ) {
+	if ( !_mc_is_url($link) ) return "class='error-link'";
+
 	$url = parse_url($link);
 	$host = $url['host'];
 	$site = parse_url( get_option( 'siteurl' ) );
@@ -1281,7 +1294,7 @@ function mc_guess_calendar() {
 	/* If you're looking at this, and have suggestions for other slugs I could be looking at, feel free to let me know. I didn't feel a need to be overly thorough. */
 	$my_guesses = array( 'calendar','events','activities','classes','courses','rehearsals','schedule','calendario','actividades','eventos','kalender','veranstaltungen','unterrichten','eventi','classi' );
 	foreach( $my_guesses as $guess ) {
-		$value = $mcdb->get_var("SELECT id FROM $mcdb->posts WHERE post_name LIKE '%$guess%'" );
+		$value = $mcdb->get_var("SELECT id FROM $mcdb->posts WHERE post_name LIKE '%$guess%' AND post_status = 'publish'" );
 		if ( $value ) {
 			_e('Is this your calendar page?','my-calendar'); echo ' <code>'.get_permalink( $value ).'</code>';
 			return;
@@ -1300,10 +1313,14 @@ get_currentuserinfo();
 	$mc_db_version = get_option('mc_db_version');
 	$mc_uri = get_option('mc_uri');
 	$mc_css = get_option('mc_css_file');
+	
+	$license = ( get_option('mcs_license_key') != '' )?get_option('mcs_license_key'):'none'; 
+	$license = "License Key: ".$license; 	
+	
 	// send fields for all plugins
 	$wp_version = get_bloginfo('version');
 	$home_url = home_url();
-	$wp_url = get_bloginfo('wpurl');
+	$wp_url = site_url();
 	$language = get_bloginfo('language');
 	$charset = get_bloginfo('charset');
 	// server
@@ -1345,6 +1362,7 @@ Version: $version
 DB Version: $mc_db_version
 URI: $mc_uri
 CSS: $mc_css
+License: $license 
 
 ==WordPress:==
 Version: $wp_version
@@ -1367,6 +1385,7 @@ Version: $theme_version
 ==Active Plugins:==
 $plugins_string
 ";
+	$request = '';
 	if ( isset($_POST['mc_support']) ) {
 		$nonce=$_REQUEST['_wpnonce'];
 		if (! wp_verify_nonce($nonce,'my-calendar-nonce') ) die("Security check failed");	
@@ -1617,53 +1636,6 @@ function mc_increment_event( $id, $post=array() ) {
 						$sql = $wpdb->insert( my_calendar_event_table(), $data, $format );
 						$newbegin = my_calendar_add_date(date('Y-m-d  H:i:s',$newbegin),28,0,0);
 						$newend = my_calendar_add_date(date('Y-m-d  H:i:s',$newend),28,0,0);
-					// JCD NOTE old method of calculating month-by-day events, keeping in case of problems with new method. (Replaced in version 2.0.0)
-				 	//$day_diff = jd_date_diff($approxbegin, $approxend);						
-						//$day_of_event = date('D',strtotime($event->event_begin) );
-						/*for ($n=-6;$n<=6;$n++) {								
-							$timestamp = strtotime(my_calendar_add_date($approxbegin,$n,0,0));
-							$current_day = date('D',$timestamp);
-							if ($current_day == $day_of_event) {
-							$current_week = week_of_month( date( 'd',$timestamp));
-							$current_date = date( 'd',$timestamp);
-								if ($current_day == $day_of_event && $current_week == $week_of_event) {
-									$this_date = $current_date;
-								} else {
-									$first = $week_of_event*7;
-									$last = $first+7;
-									for ($s=$first;$s<=$last;$s++) {
-										if ( $s > date('t',$timestamp) ) {
-											$day = $s-date('t',$timestamp);
-											$month = (date('m',$timestamp) == 12)?1:date('m',$timestamp)+1;
-										} else {
-											$day = $s;
-											$month = date( 'm', $timestamp);
-										}
-										$string = date( 'Y', $timestamp ).'-'.$month.'-'.$day;
-										$week = week_of_month($s);
-											if ( date('D',strtotime($string)) == $day_of_event && $week == $week_of_event ) {
-												$this_date = $s; break;
-											} 
-									}
-									if ( $fifth_week == 1 && $this_date > date('t',$timestamp) ) {
-										$first = $first;
-										$last = $first-7;
-										for ($s=$last;$s<=$first;$s++) {
-											$string = date( 'Y', $timestamp ).'-'.date('m', $timestamp).'-'.$s;
-											if ( date('D',strtotime($string)) == $day_of_event ) {
-												$this_date = $s; break;
-											}
-										}
-									}
-								}
-								if ( ($current_day == $day_of_event && $current_week == $week_of_event) || ($current_date >= $this_date && $current_date <= $this_date+$day_diff && $this_date != '' ) ) {				
-									$begin = my_calendar_add_date($approxbegin,$n,0,0);
-									$end = my_calendar_add_date($approxend,$n,0,0);																		
-										$data = array( 'occur_event_id'=>$id, 'occur_begin'=>date('Y-m-d  H:i:s',$begin), 'occur_end'=>date('Y-m-d  H:i:s',$end), 'occur_group_id'=>$group_id );
-										$sql = $wpdb->insert( my_calendar_event_table(), $data, $format );
-								}
-							}
-						}*/
 					}
 				break;
 				case "Y":

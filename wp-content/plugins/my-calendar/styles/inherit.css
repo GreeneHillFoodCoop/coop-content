@@ -53,8 +53,8 @@ letter-spacing: 1px;
 .mc-main th abbr {
 border-bottom: none;
 }
-.mc-main h3 {
-font: 700 .8em Arial, Verdana, sans-serif;
+.mc-main h3, .mc-main h3 a {
+font: 700 10px Arial, Verdana, sans-serif;
 margin:3px 0;
 padding:0;
 width: 100%;

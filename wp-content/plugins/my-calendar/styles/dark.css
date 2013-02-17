@@ -8,11 +8,13 @@
 .mc-main .calendar-events {background: #222;color: #fff;}
 .mc-main .category-key .no-icon {border: 1px solid #bbb;}
 
+.mc-main,.mc-list  {background: #333; padding: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;color:#fff;}
 .mc-main caption, .mc-main .my-calendar-date-switcher, .mc-main .my-calendar-nav li a:hover, .mc-main .category-key {
 border: 1px solid #222;
 }
 .mc-main .my-calendar-date-switcher {padding: 4px;margin: 0 0 10px;}
-.mc-main .my-calendar-date-switcher input, .mc-main .my-calendar-date-switcher label, .mc-main .my-calendar-date-switcher select {margin: 0;padding: 0;color: #333;}
+.mc-main .my-calendar-date-switcher input, .mc-main .my-calendar-date-switcher select {margin: 0;padding: 0;color: #333;}
+ .mc-main .my-calendar-date-switcher label {  margin: 0; padding: 0; color: #fff; }
 .mc-main .my-calendar-date-switcher .button {font-size: .9em;}
 .mc-main .list-event .details, .mc-main td {border:1px solid #222;}
 .mc-main .calendar-event .details, .mc-main .calendar-events {background: #444;border: 1px solid #222;color:#fff;}
@@ -42,8 +44,8 @@ padding:2px!important;
 .mini td {height: auto!important;}
 .mc-main th {text-align: center;padding: 5px 0!important;letter-spacing: 1px;}
 .mc-main th abbr {border-bottom: none;}
-.mc-main h3 {
-font: 700 .8em Arial, Verdana, sans-serif;
+.mc-main h3, .mc-main h3 a {
+font: 700 10px Arial, Verdana, sans-serif;
 margin:3px 0;
 padding:0;
 width: 100%;

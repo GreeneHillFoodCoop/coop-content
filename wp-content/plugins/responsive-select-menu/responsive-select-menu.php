@@ -4,13 +4,13 @@
 Plugin Name: Responsive Select Menu
 Plugin URI: http://wpmegamenu.com/responsive-select-menu
 Description: Turn your menu into a select box at small viewport sizes
-Version: 1.2
+Version: 1.4
 Author: Chris Mavricos, SevenSpark
 Author URI: http://sevenspark.com
 Copyright 2011-2012  Chris Mavricos, SevenSpark http://sevenspark.com (email : chris@sevenspark.com) 
 */
 
-define( 'RESPONSIVE_SELECT_MENU_VERSION', '1.2' );
+define( 'RESPONSIVE_SELECT_MENU_VERSION', '1.4' );
 define( 'RESPONSIVE_SELECT_MENU_SETTINGS', 'responsive-select-menu' );
 
 require_once( 'sparkoptions/SparkOptions.class.php' );		//SevenSpark Options Panel
@@ -103,7 +103,7 @@ class ResponsiveMenuSelect{
 	}
 
 	function loadCSS(){
-
+		if( $this->isEnabled() ) wp_enqueue_script( 'jquery' );	
 	}
 	
 	function insertHeaderCode(){
@@ -113,7 +113,7 @@ class ResponsiveMenuSelect{
 <!-- Responsive Select CSS 
 ================================================================ -->
 <style type="text/css" id="responsive-select-css">
-.responsiveSelectContainer select.responsiveMenuSelect{
+.responsiveSelectContainer select.responsiveMenuSelect, select.responsiveMenuSelect{
 	display:none;
 }
 
@@ -123,12 +123,12 @@ class ResponsiveMenuSelect{
 		background:none !important;
 		box-shadow:none !important;
 	}
-	.responsiveSelectContainer ul{
+	.responsiveSelectContainer ul, ul.responsiveSelectFullMenu, #megaMenu ul.megaMenu.responsiveSelectFullMenu{
 		display: none !important;
 	}
-	.responsiveSelectContainer select.responsiveMenuSelect { 
+	.responsiveSelectContainer select.responsiveMenuSelect, select.responsiveMenuSelect { 
 		display: inline-block; 
-
+		width:100%;
 	}
 }	
 </style>
@@ -139,7 +139,8 @@ class ResponsiveMenuSelect{
 <script type="text/javascript">
 jQuery(document).ready( function($){
 	$( '.responsiveMenuSelect' ).change(function() {
-	  window.location = $(this).find( 'option:selected' ).val();
+		var loc = $(this).find( 'option:selected' ).val();
+		if( loc != '' && loc != '#' ) window.location = loc;
 	});
 });
 </script>
@@ -159,9 +160,13 @@ jQuery(document).ready( function($){
 				return $args;
 			}
 			
-			$selectNav = $this->selectNavMenu( $args );		
+			$selectNav = $this->selectNavMenu( $args );
 			
-			$args['container_class'].= ' responsiveSelectContainer';		
+			$args['container_class'].= ' responsiveSelectContainer';	
+			$args['menu_class'].= ' responsiveSelectFullMenu';
+
+			//This line would add a container if it doesn't exist, but has the potential to break certain theme menus
+			//if( $args['container'] != 'nav' ) $args['container'] = 'div';	//make sure there's a container to add class to
 			
 			$args['items_wrap']	= '<ul id="%1$s" class="%2$s">%3$s</ul>'.$selectNav;
 
@@ -267,7 +272,7 @@ jQuery(document).ready( function($){
 		$sparkOps->addCheckbox( $basic,
 					'exclude-hashes',
 					'Exclude Items Without Links',
-					'Exclude any items where the URL is set to "#"',
+					'Exclude any items where the URL is set to "#" or blank',
 					'on'
 					);
 
@@ -411,7 +416,7 @@ jQuery(document).ready( function($){
 			<div class="cf">
 				<h4>UberMenu - Responsive WordPress Mega Menu Plugin</h4>
 
-				<a href="http://wpmegamenu.com"><img src="http://3.s3.envato.com/files/18012678/UberMenu_packaging_main.jpg" alt="UberMenu" /></a>
+				<a href="http://wpmegamenu.com"><img src="http://2.s3.envato.com/files/43473217/UberMenu_packaging_main_2.2.png" alt="UberMenu" /></a>
 
 				<p>UberMenu is a user-friendly, highly customizable responsive Mega Menu WordPress plugin. 
 				It works out of the box with the WordPress 3 Menu System, making it simple to get started 
@@ -422,12 +427,42 @@ jQuery(document).ready( function($){
 			</div>
 
 			<div class="cf">
+				<h4>UberMenu - Sticky Menu Extension</h4>
+
+				<a href="http://wpmegamenu.com/sticky"><img src="http://2.s3.envato.com/files/46737754/UberMenuSticky_packaging_main_1.0.png" alt="UberMenu Sticky Menu" /></a>
+
+				<p>Turn your UberMenu into a Sticky Menu as your users scroll.</p>
+
+				<a href="http://wpmegamenu.com/sticky" class="button save-button" target="_blank">Check out the UberMenu Sticky demo &rarr;</a>
+
+			</div>
+
+			<div class="cf">
+				<h4>UberMenu - Conditionals Extension</h4>
+
+				<a href="http://wpmegamenu.com/conditionals"><img src="http://0.s3.envato.com/files/35005553/UberMenu_Conditionals_packaging_main.png" alt="UberMenu Conditionals" /></a>
+
+				<p>Display or hide your menu items based on preset conditions.</p>
+
+				<a href="http://labs.sevenspark.com/UberMenuConditionals" class="button save-button" target="_blank">Check out the UberMenu Conditionals demo &rarr;</a>
+
+			</div>
+
+			<div class="cf">
 				<h4>Agility - Responsive HTML5 WordPress Theme</h4>
 
-				<img src="http://3.s3.envato.com/files/12296998/Preview/01_Agility_-_Responsive_Minimal_HTML5.__large_preview.jpg" alt="Agility" />
+				<img src="http://1.s3.envato.com/files/26983727/01_Agility_Responsive_WordPress_theme.__large_preview.png" alt="Agility" />
 
-				<a href="http://agility.sevenspark.com" class="button save-button" target="_blank">Coming Soon! [View the demo] &rarr;</a>
+				<a href="http://agility.sevenspark.com" class="button save-button" target="_blank">View the demo &rarr;</a>
+			</div>
 
+			<div class="cf">
+				<h4>WordPress Menu Management Enhancer</h4>
+
+				<img src="http://3.s3.envato.com/files/6124310/MenuManager_packaging_main.jpg" alt="Agility" />
+
+				<a href="http://codecanyon.net/item/menu-management-enhancer-for-wordpress/529353?ref=sevenspark" class="button save-button" target="_blank">View the demo &rarr;</a>
+			</div>
 
 		';
 
@@ -476,7 +511,7 @@ class ResponsiveSelectWalker extends Walker_Nav_Menu{
 		$id = apply_filters( 'nav_menu_item_id', 'menu-item-'. $item->ID, $item, $args );
 		$id = strlen( $id ) ? ' id="' . esc_attr( $id ) . '"' : '';
 
-		if( $item->url == '#' && $responsiveMenuSelect->getSettings()->op( 'exclude-hashes' ) ){
+		if( ( $item->url == '#' || $item->url == '' ) && $responsiveMenuSelect->getSettings()->op( 'exclude-hashes' ) ){
 			return;
 		}
 
@@ -512,7 +547,8 @@ class ResponsiveSelectWalker extends Walker_Nav_Menu{
 
 		}
 
-		$attributes = ! empty( $item->url )        ? ' value="'   . esc_attr( $item->url        ) .'"' : '';
+		//$attributes = ! empty( $item->url )        ? ' value="'   . esc_attr( $item->url        ) .'"' : '';
+		$attributes = ' value="'   . esc_attr( $item->url        ) .'"';
 		
 		if( $responsiveMenuSelect->getSettings()->op( 'current_selected' ) && strpos( $class_names , 'current-menu-item' ) > 0 ){
 			$attributes.= ' selected="selected"';

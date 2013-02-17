@@ -39,15 +39,19 @@ function my_calendar_date_xcomp($early,$late) {
 }
 // true if dates are the same
 function my_calendar_date_equal($early,$late) {
-	$firstdate = strtotime($early);
-	$lastdate = strtotime($late);
-	if ($early == $late) {
+	// convert full datetime to date only
+	$firstdate = strtotime( date( 'Y-m-d',strtotime($early) ) );
+	$lastdate = strtotime( date( 'Y-m-d',strtotime($late) ) );
+	if ($firstdate == $lastdate) {
 		return true;
 	} else {
 		return false;
 	}	
 }
-
+// test whether two dates are day-consecutive
+function mc_dates_consecutive( $current, $last_date ) {
+	if ( strtotime( $last_date.'+ 1 day' ) == strtotime( $current ) ) { return true; } else { return false; }
+}
 // Function to compare time in event objects
 function my_calendar_time_cmp($a, $b) {
 	if ( $a->occur_begin == $b->occur_begin ) {
@@ -79,9 +83,11 @@ function my_calendar_reverse_datetime_cmp($b, $a) {
   return ( $event_dt_a < $event_dt_b ) ? -1 : 1;
 }
 
-function my_calendar_timediff_cmp($a, $b) {
-	$event_dt_a = strtotime($a->occur_begin);
-	$event_dt_b = strtotime($b->occur_begin);
+function my_calendar_timediff_cmp( $a, $b ) {
+	$a = $a.date(' H:i:s',current_time( 'timestamp' ) );
+	$b = $b.date(' H:i:s',current_time( 'timestamp' ) );
+	$event_dt_a = strtotime($a);
+	$event_dt_b = strtotime($b);
 	$diff_a = jd_date_diff_precise($event_dt_a);
 	$diff_b = jd_date_diff_precise($event_dt_b);
 	
@@ -185,10 +191,9 @@ function mc_checkdate($date) {
 }
 
 function first_day_of_week() {
-	$offset = (60*60*get_option('gmt_offset'));
 	$start_of_week = (get_option('start_of_week')==1||get_option('start_of_week')==0)?get_option('start_of_week'):0;
-	$today = date('w',time()+$offset);
-	$now = date('Y-m-d',time()+$offset);
+	$today = date('w',current_time('timestamp'));
+	$now = date('Y-m-d',current_time('timestamp'));
 	$month = 0; // don't change month
 	switch ($today) {
 		case 1:	$sub = ($start_of_week == 1)?0:1;break; // mon
